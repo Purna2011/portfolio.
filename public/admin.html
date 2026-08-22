@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
   <style>
     .admin-layout { display: flex; min-height: 100vh; background-color: var(--bg-primary); }
     .admin-sidebar { width: 260px; background: var(--bg-surface); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
@@ -108,9 +108,10 @@
     <main class="admin-main">
       <header class="admin-topbar">
         <div><h2 id="admin-view-title" style="font-size:16px;font-weight:600;color:var(--text-primary);">Dashboard Overview</h2></div>
-        <div style="display:flex;align-items:center;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button class="btn btn-secondary btn-sm" onclick="exportDataJson()"><i data-lucide="download" style="width:14px;height:14px;"></i><span>Export data.json</span></button>
           <button id="quick-add-proj-btn" class="btn btn-primary btn-sm" onclick="switchAdminView('view-projects'); openProjectEditor();"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>+ Add New Project</span></button>
-          <a href="/" target="_blank" class="btn btn-secondary btn-sm"><i data-lucide="globe" style="width:14px;height:14px;"></i><span>View Public Website</span></a>
+          <a href="/" target="_blank" class="btn btn-secondary btn-sm"><i data-lucide="globe" style="width:14px;height:14px;"></i><span>View Live Site</span></a>
         </div>
       </header>
 
@@ -128,8 +129,9 @@
             <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;">Quick Action Shortcuts</h3>
             <div style="display:flex;gap:14px;flex-wrap:wrap;">
               <button class="btn btn-secondary" onclick="switchAdminView('view-projects'); openProjectEditor();"><i data-lucide="plus-circle" style="width:16px;height:16px;color:var(--accent-blue);"></i><span>+ Create New Project</span></button>
+              <button class="btn btn-secondary" onclick="switchAdminView('view-experience'); openExperienceModal();"><i data-lucide="briefcase" style="width:16px;height:16px;color:var(--accent-teal);"></i><span>+ Add / Edit Experience</span></button>
               <button class="btn btn-secondary" onclick="switchAdminView('view-profile')"><i data-lucide="user-check" style="width:16px;height:16px;color:var(--accent-teal);"></i><span>Edit Personal Details</span></button>
-              <button class="btn btn-secondary" onclick="switchAdminView('view-resume')"><i data-lucide="upload" style="width:16px;height:16px;color:var(--accent-amber);"></i><span>Manage Resume PDF</span></button>
+              <button class="btn btn-secondary" onclick="exportDataJson()"><i data-lucide="download-cloud" style="width:16px;height:16px;color:var(--accent-amber);"></i><span>Export Updated data.json</span></button>
             </div>
           </div>
         </section>
@@ -413,6 +415,6 @@
   </div>
 
   <div class="toast-container" id="toast-container"></div>
-  <script src="admin.js"></script>
+  <script src="/admin.js"></script>
 </body>
 </html>
