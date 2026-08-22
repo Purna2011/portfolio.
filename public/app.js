@@ -3,17 +3,48 @@ let portfolioData = null;
 let activeCategory = 'All';
 
 async function initPortfolio() {
+  // Check local live cache first for instantaneous persistence
+  const cached = localStorage.getItem('portfolio_live_state');
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed && parsed.profile) {
+        portfolioData = {
+          profile: parsed.profile,
+          projects: (parsed.projects || []).filter(p => p.published),
+          skills: parsed.skills || [],
+          experience: parsed.experience || [],
+          education: parsed.education || [],
+          certifications: parsed.certifications || [],
+          publications: parsed.publications || [],
+          social_links: parsed.social_links || [],
+          resume: parsed.resume || {},
+          categories: parsed.site_settings?.categories || []
+        };
+        renderAll(portfolioData);
+      }
+    } catch (e) {
+      console.warn('Cache parse error:', e);
+    }
+  }
+
   try {
     const res = await fetch('/api/portfolio');
-    if (!res.ok) throw new Error('Failed to fetch portfolio data');
-    const json = await res.json();
-    if (json.success && json.data) {
-      portfolioData = json.data;
-      renderAll(portfolioData);
+    if (res.ok) {
+      const json = await res.json();
+      if (json.success && json.data) {
+        // If no local overrides exist, use server data
+        if (!cached) {
+          portfolioData = json.data;
+          renderAll(portfolioData);
+        }
+      }
     }
   } catch (err) {
-    console.error('Error initializing portfolio:', err);
-    showToast('Failed to load live portfolio content', 'error');
+    console.error('Error fetching live portfolio:', err);
+    if (!portfolioData) {
+      showToast('Failed to load portfolio data', 'error');
+    }
   }
 }
 
