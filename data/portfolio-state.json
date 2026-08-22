@@ -1,0 +1,497 @@
+{
+  "profile": {
+    "name": "Raavi Purna Satya Kumar",
+    "title": "Data & Product Analyst",
+    "headline": "Turning complex datasets into clear, high-leverage business decisions and production-ready analytics systems.",
+    "short_bio": "I am a Data & Product Analyst focused on business intelligence, SQL pipeline optimization, and product analytics. I build interactive dashboards, diagnostic data models, and automated reporting systems that help teams understand customer behavior, streamline operations, and drive revenue growth.",
+    "about_headline": "Bridging raw data, statistical rigor, and executive decisions.",
+    "about_text": "I bridge the gap between messy raw databases and executive decision-making. Over the past several years, I have worked across SQL optimization, Power BI dashboard architecture, Python-based statistical modeling, and product funnel analysis.\n\nMy approach is straightforward: every metric must tie to an actionable decision. Rather than generating vanity charts, I focus on identifying bottlenecks, cohort retention trends, and unit economics that directly move the needle for product and operations teams.",
+    "email": "raavipurnasatyakumar@gmail.com",
+    "phone": "+91 98765 43210",
+    "location": "Hyderabad, India / Remote",
+    "linkedin": "https://linkedin.com/in/raavipurnasatyakumar",
+    "github": "https://github.com/raavipurna",
+    "resume_url": "/uploads/Raavi_Purna_Satya_Kumar_Resume.pdf",
+    "profile_photo": "assets/avatar.svg",
+    "open_to_work": true,
+    "status_text": "Available for Data Analyst & Product Analytics Roles",
+    "years_experience": "2+",
+    "projects_completed": "15+",
+    "satisfaction_rate": "99%"
+  },
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "SQL Business Insights & SaaS Churn Diagnostics",
+      "slug": "sql-saas-churn-diagnostics",
+      "short_description": "Diagnostic SQL engine analyzing 450K+ subscription records to detect early churn warning signals and protect annual recurring revenue.",
+      "full_description": "A comprehensive end-to-end SQL diagnostic model built for subscription SaaS metrics. The system tracks Monthly Recurring Revenue (MRR) expansion, contraction, and cohort retention decay curves, alerting account managers 60 days before contract renewal.",
+      "category": "SQL & Business Intelligence",
+      "technologies": [
+        "PostgreSQL",
+        "Advanced SQL CTEs",
+        "Metabase",
+        "Cohort Analysis",
+        "Window Functions"
+      ],
+      "problem_statement": "A subscription SaaS company experienced an undetected 18% quarterly revenue contraction due to silent churn in mid-tier enterprise accounts without proactive visibility.",
+      "objective": "Design an automated SQL diagnostic model to track monthly recurring revenue (MRR) cohorts and identify leading indicators of customer churn 60 days prior to contract renewal.",
+      "dataset": "450,000+ subscription transaction records, user event logs, and billing logs spanning 24 months across 1,200 enterprise and mid-market accounts.",
+      "methodology": "Engineered recursive SQL CTEs and rolling window functions to partition user engagement by weekly active utilization. Constructed cohort retention heatmaps and calculated feature-level drop-off rates.",
+      "key_findings": "Accounts with <3 weekly active users in their first 30 days had a 72% likelihood of churn by month 6. Feature unbundling in Q2 caused a 24% drop in core analytics usage among non-technical admins.",
+      "business_impact": "Enabled the customer success team to proactively intervene on at-risk accounts, reducing voluntary churn by 14.5% and preserving $185,000 in Annual Recurring Revenue (ARR).",
+      "github_url": "https://github.com/raavipurna/sql-saas-churn-diagnostics",
+      "live_demo_url": "https://demo.raavipurna.dev/saas-churn",
+      "images": [
+        "assets/project-sql-1.svg",
+        "assets/project-sql-2.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 1,
+      "created_at": "2026-01-15T10:00:00Z",
+      "updated_at": "2026-08-10T14:30:00Z",
+      "version": 2
+    },
+    {
+      "id": "proj-2",
+      "title": "End-to-End E-Commerce Supply Chain & Inventory Optimization",
+      "slug": "ecommerce-supply-chain-powerbi",
+      "short_description": "Interactive Power BI dashboard and automated ETL pipeline optimizing inventory turnover and reducing stockout risks across 8 regional hubs.",
+      "full_description": "Engineered an end-to-end supply chain intelligence dashboard integrating 1.2M order line items. The dashboard provides automated daily stock alerts, supplier lead time variability tracking, and dynamic safety stock recommendations.",
+      "category": "Power BI & Analytics",
+      "technologies": [
+        "Power BI",
+        "DAX",
+        "Python",
+        "ETL Pipelines",
+        "PostgreSQL",
+        "Forecasting"
+      ],
+      "problem_statement": "A multi-regional retail distributor faced frequent stockouts on top-selling SKUs alongside $320,000 in dead stock accumulation across regional fulfillment centers.",
+      "objective": "Build an end-to-end interactive Power BI dashboard with automated daily ETL to forecast reorder points, track supplier lead times, and optimize inventory turnover.",
+      "dataset": "1.2M+ order line items, 4,500 SKUs, 8 regional warehouses, and historical supplier delivery manifests across 3 consecutive years.",
+      "methodology": "Built robust DAX time-intelligence measures for safety stock calculations and dynamic lead time variances. Integrated a Python script for exponential smoothing demand forecasting.",
+      "key_findings": "Supplier lead time variability accounted for 64% of stockout events, while 12% of SKUs represented 78% of holding costs.",
+      "business_impact": "Cut inventory holding costs by 19% while improving order fulfillment rate from 89.2% to 96.8% across all 8 fulfillment centers.",
+      "github_url": "https://github.com/raavipurna/supply-chain-analytics-powerbi",
+      "live_demo_url": "https://app.powerbi.com/view?r=sample-supply-chain",
+      "images": [
+        "assets/project-powerbi-1.svg",
+        "assets/project-powerbi-2.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 2,
+      "created_at": "2026-02-20T09:00:00Z",
+      "updated_at": "2026-07-18T16:00:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-3",
+      "title": "IPL & Cricket Performance Analytics Engine",
+      "slug": "ipl-cricket-performance-analytics",
+      "short_description": "Data analytics pipeline evaluating 250K+ deliveries to quantify situational player leverage, phase-wise efficiency, and matchup advantages.",
+      "full_description": "A sports analytics engine built to move beyond standard averages and strike rates. Analyzes ball-by-ball IPL match data with contextual pressure modeling (Powerplay, Middle Overs, Death) to discover undervalued players and optimal tactical match-ups.",
+      "category": "Python & Data Analysis",
+      "technologies": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-Learn",
+        "Matplotlib",
+        "Seaborn",
+        "Streamlit"
+      ],
+      "problem_statement": "Traditional cricket metrics fail to capture contextual pressure, match phase impact (Powerplay vs Death overs), and player value across match situations.",
+      "objective": "Develop a comprehensive ball-by-ball analysis pipeline to quantify player impact, match situation leverage, and bowler-batter head-to-head match-up efficiencies.",
+      "dataset": "Ball-by-ball dataset covering 1,000+ IPL matches and 250,000+ deliveries with situational context (run rate required, wickets in hand).",
+      "methodology": "Engineered custom impact metrics (True Strike Rate, Expected Wickets, Phase Value Contribution). Developed a Streamlit interactive portal for match simulation and scout comparisons.",
+      "key_findings": "Identified undervalued middle-order spin-hitters with >145 Strike Rate in overs 7-14 against wrist spin, showing 2.3x higher win-probability contribution than baseline.",
+      "business_impact": "Created an open-source analytics toolkit with over 500+ GitHub stars, utilized by grassroots cricket analysts and tactical sports content creators.",
+      "github_url": "https://github.com/raavipurna/ipl-cricket-analytics",
+      "live_demo_url": "https://cricket-analytics.streamlit.app",
+      "images": [
+        "assets/project-cricket-1.svg",
+        "assets/project-cricket-2.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 3,
+      "created_at": "2026-03-10T11:00:00Z",
+      "updated_at": "2026-06-25T12:00:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-4",
+      "title": "Product Growth & Feature Adoption Funnel Diagnostics",
+      "slug": "product-growth-funnel-diagnostics",
+      "short_description": "Data-driven behavioral analytics and A/B test framework restoring onboarding completion rate from 41% to 68.4%.",
+      "full_description": "Conducted in-depth clickstream analysis and hypothesis-driven experiment design to diagnose drop-offs in user onboarding. Resulted in an optimized onboarding journey with significant lift in Day-30 retention.",
+      "category": "Product Analytics",
+      "technologies": [
+        "Product Analytics",
+        "A/B Testing",
+        "PostHog",
+        "SQL",
+        "Funnel Analysis",
+        "Hypothesis Testing"
+      ],
+      "problem_statement": "New user onboarding completion dropped from 62% to 41% following a multi-step workspace setup redesign, causing a spike in drop-offs at step 3.",
+      "objective": "Conduct a rigorous funnel drop-off analysis and hypothesis-driven A/B testing plan to eliminate onboarding friction and lift Day-7 activation.",
+      "dataset": "85,000+ user onboarding sessions, event-level clickstream tracking, and user feedback responses.",
+      "methodology": "Segmented user cohorts by acquisition channel, device, and team size. Ran statistical significance tests (two-tailed z-test, p < 0.01) across 3 onboarding flow variants.",
+      "key_findings": "Mandatory team invitation during step 3 caused 58% of solo users to abandon. Removing mandatory team invite and adding contextual sample templates restored momentum.",
+      "business_impact": "Lifted onboarding completion rate to 68.4% (+27.4% absolute gain) and improved Day-30 retention by 11.2%.",
+      "github_url": "https://github.com/raavipurna/product-funnel-analysis",
+      "live_demo_url": "https://demo.raavipurna.dev/product-funnel",
+      "images": [
+        "assets/project-product-1.svg",
+        "assets/project-product-2.svg"
+      ],
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "order": 4,
+      "created_at": "2026-04-05T08:30:00Z",
+      "updated_at": "2026-08-01T15:00:00Z",
+      "version": 1
+    }
+  ],
+  "project_versions": [
+    {
+      "version_id": "v-1-1",
+      "project_id": "proj-1",
+      "version_number": 1,
+      "saved_at": "2026-01-15T10:00:00Z",
+      "saved_by": "admin",
+      "change_note": "Initial publish of SQL SaaS Churn Diagnostics project",
+      "snapshot": {
+        "id": "proj-1",
+        "title": "SQL SaaS Churn Diagnostics",
+        "slug": "sql-saas-churn-diagnostics",
+        "short_description": "SQL model analyzing 450K+ subscription records to detect early churn warning signals.",
+        "full_description": "A comprehensive end-to-end SQL diagnostic model built for subscription SaaS metrics.",
+        "category": "SQL & Business Intelligence",
+        "technologies": [
+          "PostgreSQL",
+          "SQL CTEs",
+          "Metabase"
+        ],
+        "problem_statement": "A subscription SaaS company experienced undetected revenue contraction.",
+        "objective": "Design an automated SQL model to track monthly recurring revenue.",
+        "dataset": "450,000+ subscription records across 1,200 accounts.",
+        "methodology": "Engineered SQL CTEs and rolling window functions.",
+        "key_findings": "Accounts with <3 weekly active users had higher churn rates.",
+        "business_impact": "Helped team reduce churn by 12%.",
+        "github_url": "https://github.com/raavipurna/sql-saas-churn-diagnostics",
+        "live_demo_url": "https://demo.raavipurna.dev/saas-churn",
+        "images": [
+          "assets/project-sql-1.svg"
+        ],
+        "video_url": "",
+        "featured": true,
+        "published": true,
+        "order": 1
+      }
+    },
+    {
+      "version_id": "v-1-2",
+      "project_id": "proj-1",
+      "version_number": 2,
+      "saved_at": "2026-08-10T14:30:00Z",
+      "saved_by": "admin",
+      "change_note": "Updated with quantified ARR retention impact and deep cohort findings",
+      "snapshot": {
+        "id": "proj-1",
+        "title": "SQL Business Insights & SaaS Churn Diagnostics",
+        "slug": "sql-saas-churn-diagnostics",
+        "short_description": "Diagnostic SQL engine analyzing 450K+ subscription records to detect early churn warning signals and protect annual recurring revenue.",
+        "full_description": "A comprehensive end-to-end SQL diagnostic model built for subscription SaaS metrics. The system tracks Monthly Recurring Revenue (MRR) expansion, contraction, and cohort retention decay curves, alerting account managers 60 days before contract renewal.",
+        "category": "SQL & Business Intelligence",
+        "technologies": [
+          "PostgreSQL",
+          "Advanced SQL CTEs",
+          "Metabase",
+          "Cohort Analysis",
+          "Window Functions"
+        ],
+        "problem_statement": "A subscription SaaS company experienced an undetected 18% quarterly revenue contraction due to silent churn in mid-tier enterprise accounts without proactive visibility.",
+        "objective": "Design an automated SQL diagnostic model to track monthly recurring revenue (MRR) cohorts and identify leading indicators of customer churn 60 days prior to contract renewal.",
+        "dataset": "450,000+ subscription transaction records, user event logs, and billing logs spanning 24 months across 1,200 enterprise and mid-market accounts.",
+        "methodology": "Engineered recursive SQL CTEs and rolling window functions to partition user engagement by weekly active utilization. Constructed cohort retention heatmaps and calculated feature-level drop-off rates.",
+        "key_findings": "Accounts with <3 weekly active users in their first 30 days had a 72% likelihood of churn by month 6. Feature unbundling in Q2 caused a 24% drop in core analytics usage among non-technical admins.",
+        "business_impact": "Enabled the customer success team to proactively intervene on at-risk accounts, reducing voluntary churn by 14.5% and preserving $185,000 in Annual Recurring Revenue (ARR).",
+        "github_url": "https://github.com/raavipurna/sql-saas-churn-diagnostics",
+        "live_demo_url": "https://demo.raavipurna.dev/saas-churn",
+        "images": [
+          "assets/project-sql-1.svg",
+          "assets/project-sql-2.svg"
+        ],
+        "video_url": "",
+        "featured": true,
+        "published": true,
+        "order": 1
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk-1",
+      "name": "SQL (PostgreSQL / MySQL)",
+      "category": "Data Querying & Databases",
+      "level": "Advanced",
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "sk-2",
+      "name": "Window Functions & CTEs",
+      "category": "Data Querying & Databases",
+      "level": "Advanced",
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "sk-3",
+      "name": "Database Schema & Query Optimization",
+      "category": "Data Querying & Databases",
+      "level": "Proficient",
+      "featured": false,
+      "order": 3
+    },
+    {
+      "id": "sk-4",
+      "name": "Power BI & DAX Modeling",
+      "category": "Business Intelligence & Visualization",
+      "level": "Advanced",
+      "featured": true,
+      "order": 4
+    },
+    {
+      "id": "sk-5",
+      "name": "Tableau & Metabase",
+      "category": "Business Intelligence & Visualization",
+      "level": "Proficient",
+      "featured": false,
+      "order": 5
+    },
+    {
+      "id": "sk-6",
+      "name": "Executive KPI Dashboarding",
+      "category": "Business Intelligence & Visualization",
+      "level": "Advanced",
+      "featured": true,
+      "order": 6
+    },
+    {
+      "id": "sk-7",
+      "name": "Python (Pandas, NumPy)",
+      "category": "Programming & Analytics",
+      "level": "Advanced",
+      "featured": true,
+      "order": 7
+    },
+    {
+      "id": "sk-8",
+      "name": "Exploratory Data Analysis (EDA)",
+      "category": "Programming & Analytics",
+      "level": "Advanced",
+      "featured": true,
+      "order": 8
+    },
+    {
+      "id": "sk-9",
+      "name": "Statistical Analysis & Hypothesis Testing",
+      "category": "Programming & Analytics",
+      "level": "Proficient",
+      "featured": false,
+      "order": 9
+    },
+    {
+      "id": "sk-10",
+      "name": "Product Funnel & Cohort Retention",
+      "category": "Product & Business Strategy",
+      "level": "Advanced",
+      "featured": true,
+      "order": 10
+    },
+    {
+      "id": "sk-11",
+      "name": "A/B Testing & Experimentation",
+      "category": "Product & Business Strategy",
+      "level": "Proficient",
+      "featured": true,
+      "order": 11
+    },
+    {
+      "id": "sk-12",
+      "name": "Unit Economics & Churn Modeling",
+      "category": "Product & Business Strategy",
+      "level": "Proficient",
+      "featured": false,
+      "order": 12
+    },
+    {
+      "id": "sk-13",
+      "name": "ETL Pipelines & Automated Scripts",
+      "category": "Tools & Engineering",
+      "level": "Proficient",
+      "featured": false,
+      "order": 13
+    },
+    {
+      "id": "sk-14",
+      "name": "Git & GitHub Version Control",
+      "category": "Tools & Engineering",
+      "level": "Proficient",
+      "featured": false,
+      "order": 14
+    },
+    {
+      "id": "sk-15",
+      "name": "Advanced Excel (Power Query, Formulas)",
+      "category": "Tools & Engineering",
+      "level": "Advanced",
+      "featured": false,
+      "order": 15
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "role": "Data & Product Analyst",
+      "company": "Apex Dynamics Analytics",
+      "location": "Hyderabad, India",
+      "start_date": "2024-01",
+      "end_date": "Present",
+      "current": true,
+      "description": "Leading end-to-end data analytics, SQL data warehouse modeling, and executive KPI reporting for product and operations teams.",
+      "responsibilities": [
+        "Architected and maintained 12+ production Power BI dashboards tracking $4.2M in annual pipeline and product health metrics.",
+        "Reduced quarterly reporting generation time by 80% through automated PostgreSQL ETL pipelines and scheduled database views.",
+        "Collaborated with product managers to design and analyze A/B test experiments, lifting Day-7 onboarding activation by 18%."
+      ],
+      "technologies": [
+        "SQL",
+        "Power BI",
+        "Python",
+        "PostgreSQL",
+        "Product Analytics"
+      ],
+      "order": 1,
+      "visible": true
+    },
+    {
+      "id": "exp-2",
+      "role": "Junior Data Analyst Intern",
+      "company": "DataSphere Solutions",
+      "location": "Bengaluru, India (Remote)",
+      "start_date": "2023-03",
+      "end_date": "2023-12",
+      "current": false,
+      "description": "Assisted senior analysts with data cleaning, exploratory data analysis, and dashboard maintenance for retail clients.",
+      "responsibilities": [
+        "Cleaned and reconciled 2M+ customer transaction records with Python and Pandas, identifying $45,000 in billing discrepancies.",
+        "Constructed SQL queries to automate monthly churn and customer lifetime value (LTV) summaries for client presentations.",
+        "Maintained 99.5% data accuracy across cross-functional weekly reporting decks."
+      ],
+      "technologies": [
+        "Python",
+        "Pandas",
+        "SQL",
+        "Power BI",
+        "Excel"
+      ],
+      "order": 2,
+      "visible": true
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "degree": "Bachelor of Technology (B.Tech) in Computer Science & Data Engineering",
+      "institution": "Jawaharlal Nehru Technological University (JNTU)",
+      "location": "Hyderabad, India",
+      "start_date": "2020",
+      "end_date": "2024",
+      "grade": "8.65 / 10.0 CGPA",
+      "description": "Core Focus: Database Management Systems, Data Structures & Algorithms, Statistics for Data Science, Data Warehousing, Applied Machine Learning."
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "title": "Microsoft Certified: Power BI Data Analyst Associate (PL-300)",
+      "issuer": "Microsoft",
+      "issue_date": "2024-06",
+      "credential_id": "MS-PL300-849201",
+      "verification_url": "https://learn.microsoft.com/credentials",
+      "image_url": "assets/badge-microsoft.svg"
+    },
+    {
+      "id": "cert-2",
+      "title": "Advanced SQL for Data Analytics & Business Intelligence",
+      "issuer": "DataCamp",
+      "issue_date": "2023-11",
+      "credential_id": "SQL-ADV-99238",
+      "verification_url": "https://datacamp.com/verify",
+      "image_url": "assets/badge-sql.svg"
+    },
+    {
+      "id": "cert-3",
+      "title": "Google Data Analytics Professional Certificate",
+      "issuer": "Google",
+      "issue_date": "2023-05",
+      "credential_id": "GDA-771829-PROF",
+      "verification_url": "https://coursera.org/verify/professional-cert/google-data-analytics",
+      "image_url": "assets/badge-google.svg"
+    }
+  ],
+  "social_links": [
+    {
+      "id": "soc-1",
+      "platform": "GitHub",
+      "url": "https://github.com/raavipurna",
+      "icon": "github"
+    },
+    {
+      "id": "soc-2",
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/raavipurnasatyakumar",
+      "icon": "linkedin"
+    },
+    {
+      "id": "soc-3",
+      "platform": "Email",
+      "url": "mailto:raavipurnasatyakumar@gmail.com",
+      "icon": "mail"
+    }
+  ],
+  "resume": {
+    "filename": "Raavi_Purna_Satya_Kumar_Resume.pdf",
+    "file_url": "/uploads/Raavi_Purna_Satya_Kumar_Resume.pdf",
+    "last_updated": "2026-08-15",
+    "file_size": "245 KB",
+    "summary": "Updated resume highlighting 2+ years of Data & Product Analytics experience, SQL optimization, Power BI architectures, and quantified business impact."
+  },
+  "site_settings": {
+    "site_title": "Raavi Purna Satya Kumar | Data & Product Analyst Portfolio",
+    "admin_email": "raavipurnasatyakumar@gmail.com",
+    "admin_password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "categories": [
+      "All",
+      "SQL & Business Intelligence",
+      "Power BI & Analytics",
+      "Python & Data Analysis",
+      "Product Analytics",
+      "Machine Learning"
+    ],
+    "supabase_url": "",
+    "supabase_anon_key": "",
+    "enable_supabase_sync": false
+  }
+}

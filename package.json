@@ -1,0 +1,19 @@
+{
+  "name": "data-analyst-portfolio-cms",
+  "version": "1.0.0",
+  "description": "Human-Designed Data Analyst Portfolio & Private Portfolio Management System for Raavi Purna Satya Kumar",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "cms",
+    "data-analyst",
+    "powerbi",
+    "sql",
+    "python"
+  ],
+  "author": "Raavi Purna Satya Kumar",
+  "license": "MIT"
+}

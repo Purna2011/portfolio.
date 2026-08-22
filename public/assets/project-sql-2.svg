@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="12" fill="#090d16"/>
+  <rect x="2" y="2" width="796" height="496" rx="10" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <rect x="0" y="0" width="800" height="48" fill="#0f172a" rx="12 12 0 0"/>
+  <text x="28" y="29" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="600">Enterprise Churn Diagnostic Pipeline Architecture</text>
+  
+  <g transform="translate(40, 90)">
+    <!-- Stage 1 -->
+    <rect x="0" y="40" width="180" height="240" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="20" y="75" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="bold">1. RAW TELEMETRY</text>
+    <text x="20" y="105" fill="#cbd5e1" font-size="11">• 450K+ Event Logs</text>
+    <text x="20" y="130" fill="#cbd5e1" font-size="11">• Stripe Billing Logs</text>
+    <text x="20" y="155" fill="#cbd5e1" font-size="11">• Login Frequencies</text>
+    <text x="20" y="180" fill="#cbd5e1" font-size="11">• Feature Usage Flags</text>
+
+    <!-- Arrow 1 -->
+    <path d="M190 160 L230 160" stroke="#6366f1" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <!-- Stage 2 -->
+    <rect x="240" y="40" width="220" height="240" rx="8" fill="#0f172a" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="260" y="75" fill="#a5b4fc" font-family="sans-serif" font-size="12" font-weight="bold">2. SQL CTE ENGINE</text>
+    <text x="260" y="105" fill="#cbd5e1" font-size="11">• 30-Day Rolling Active Users</text>
+    <text x="260" y="130" fill="#cbd5e1" font-size="11">• MRR Cohort Partitions</text>
+    <text x="260" y="155" fill="#cbd5e1" font-size="11">• Anomaly Drop-off Triggers</text>
+    <text x="260" y="180" fill="#cbd5e1" font-size="11">• 60-Day Renewal Window</text>
+
+    <!-- Arrow 2 -->
+    <path d="M470 160 L510 160" stroke="#10b981" stroke-width="3"/>
+
+    <!-- Stage 3 -->
+    <rect x="520" y="40" width="200" height="240" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    <text x="540" y="75" fill="#6ee7b7" font-family="sans-serif" font-size="12" font-weight="bold">3. ACTIONABLE ALERTS</text>
+    <text x="540" y="105" fill="#cbd5e1" font-size="11">• CS Outreach Queue</text>
+    <text x="540" y="130" fill="#cbd5e1" font-size="11">• At-Risk Client Tiers</text>
+    <text x="540" y="155" fill="#cbd5e1" font-size="11">• Automated Health Score</text>
+    <text x="540" y="180" fill="#cbd5e1" font-size="11">• Executive Metabase View</text>
+  </g>
+  <rect x="40" y="400" width="720" height="60" rx="8" fill="#1e293b"/>
+  <text x="60" y="435" fill="#94a3b8" font-family="sans-serif" font-size="12">Key Finding: Early intervention triggered at Day-45 retained 78% of enterprise renewals compared to 23% without proactive notice.</text>
+</svg>

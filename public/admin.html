@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Control Center | Admin CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-layout { display: flex; min-height: 100vh; background-color: var(--bg-primary); }
+    .admin-sidebar { width: 260px; background: var(--bg-surface); border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
+    .admin-sidebar-header { padding: 24px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 12px; }
+    .admin-nav { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; overflow-y: auto; }
+    .admin-nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 13px; font-weight: 500; transition: all var(--transition-fast); cursor: pointer; text-decoration: none; }
+    .admin-nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
+    .admin-nav-item.active { background: var(--accent-blue-subtle); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .admin-sidebar-footer { padding: 16px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 8px; }
+    .admin-main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow-y: auto; }
+    .admin-topbar { height: 64px; background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .admin-view-container { padding: 32px; max-width: 1100px; width: 100%; margin: 0 auto; }
+    .admin-view { display: none; }
+    .admin-view.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; margin-bottom: 32px; }
+    .admin-stat-box { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; }
+    .admin-stat-val { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--accent-blue); margin-top: 6px; }
+    .admin-item-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; transition: all var(--transition-fast); }
+    .admin-item-card:hover { border-color: #334155; }
+    .status-badge-published { background: var(--accent-emerald-subtle); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .status-badge-draft { background: var(--accent-amber-subtle); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .form-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px; margin-bottom: 24px; }
+    .screenshot-uploader-zone { border: 2px dashed var(--border-subtle); border-radius: var(--radius-md); padding: 24px; text-align: center; background: var(--bg-input); cursor: pointer; transition: all var(--transition-fast); }
+    .screenshot-uploader-zone:hover { border-color: var(--accent-blue); background: var(--accent-blue-subtle); }
+    .screenshot-preview-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 14px; }
+    .screenshot-preview-card { position: relative; height: 90px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); overflow: hidden; background: #090d16; }
+    .screenshot-preview-card img { width: 100%; height: 100%; object-fit: cover; }
+    .screenshot-remove-btn { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .login-container { position: fixed; inset: 0; z-index: 5000; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .login-card { background: var(--bg-surface); border: 1px solid #334155; border-radius: var(--radius-xl); padding: 40px; width: 100%; max-width: 440px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); }
+    @media (max-width: 900px) { .admin-sidebar { display: none; } .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; } }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- LOGIN OVERLAY -->
+  <div class="login-container" id="admin-login-overlay">
+    <div class="login-card">
+      <div style="text-align:center;margin-bottom:28px;">
+        <div class="brand-badge" style="width:48px;height:48px;font-size:18px;margin:0 auto 14px;">RP</div>
+        <h2 style="font-size:22px;font-weight:700;color:var(--text-primary);">Portfolio Control Center</h2>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:4px;">Secure login for Raavi Purna Satya Kumar</p>
+      </div>
+
+      <form id="admin-login-form" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Admin Email</label>
+          <input type="email" id="login-email" required value="raavipurnasatyakumar@gmail.com" placeholder="admin@email.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <input type="password" id="login-password" required value="admin1234" placeholder="Enter password">
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Default password: <code>admin1234</code></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" id="login-btn" style="margin-top:8px;">
+          <i data-lucide="lock" style="width:16px;height:16px;"></i>
+          <span>Authenticate &amp; Open Control Center</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN CMS LAYOUT -->
+  <div class="admin-layout" id="admin-dashboard-layout" style="display:none;">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="brand-badge">RP</div>
+        <div>
+          <strong style="font-size:14px;color:var(--text-primary);display:block;">Control Center</strong>
+          <span style="font-size:11px;color:var(--accent-teal);">● Portfolio CMS</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav" id="admin-nav">
+        <a class="admin-nav-item active" data-view="view-overview"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i><span>Overview</span></a>
+        <a class="admin-nav-item" data-view="view-profile"><i data-lucide="user" style="width:16px;height:16px;"></i><span>Personal Details</span></a>
+        <a class="admin-nav-item" data-view="view-about"><i data-lucide="file-text" style="width:16px;height:16px;"></i><span>About Me</span></a>
+        <a class="admin-nav-item" data-view="view-projects"><i data-lucide="folder-kanban" style="width:16px;height:16px;"></i><span>Project Manager</span></a>
+        <a class="admin-nav-item" data-view="view-skills"><i data-lucide="cpu" style="width:16px;height:16px;"></i><span>Skills</span></a>
+        <a class="admin-nav-item" data-view="view-experience"><i data-lucide="briefcase" style="width:16px;height:16px;"></i><span>Experience</span></a>
+        <a class="admin-nav-item" data-view="view-education"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i><span>Education</span></a>
+        <a class="admin-nav-item" data-view="view-certifications"><i data-lucide="award" style="width:16px;height:16px;"></i><span>Certifications</span></a>
+        <a class="admin-nav-item" data-view="view-resume"><i data-lucide="file-check" style="width:16px;height:16px;"></i><span>Resume Manager</span></a>
+        <a class="admin-nav-item" data-view="view-settings"><i data-lucide="settings" style="width:16px;height:16px;"></i><span>Settings &amp; Sync</span></a>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="/" target="_blank" class="btn btn-secondary btn-sm" style="width:100%;"><i data-lucide="external-link" style="width:14px;height:14px;"></i><span>Preview Live Site</span></a>
+        <button id="admin-logout-btn" class="btn btn-danger btn-sm" style="width:100%;"><i data-lucide="log-out" style="width:14px;height:14px;"></i><span>Logout</span></button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div><h2 id="admin-view-title" style="font-size:16px;font-weight:600;color:var(--text-primary);">Dashboard Overview</h2></div>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button id="quick-add-proj-btn" class="btn btn-primary btn-sm" onclick="switchAdminView('view-projects'); openProjectEditor();"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>+ Add New Project</span></button>
+          <a href="/" target="_blank" class="btn btn-secondary btn-sm"><i data-lucide="globe" style="width:14px;height:14px;"></i><span>View Public Website</span></a>
+        </div>
+      </header>
+
+      <div class="admin-view-container">
+        <!-- Overview -->
+        <section class="admin-view active" id="view-overview">
+          <div class="admin-stats-grid">
+            <div class="admin-stat-box"><div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Published Projects</div><div class="admin-stat-val" id="stat-published-count">0</div></div>
+            <div class="admin-stat-box"><div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Draft Projects</div><div class="admin-stat-val" id="stat-draft-count" style="color:var(--accent-amber);">0</div></div>
+            <div class="admin-stat-box"><div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Active Skills</div><div class="admin-stat-val" id="stat-skills-count">0</div></div>
+            <div class="admin-stat-box"><div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Experience Entries</div><div class="admin-stat-val" id="stat-exp-count">0</div></div>
+            <div class="admin-stat-box"><div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;">Certifications</div><div class="admin-stat-val" id="stat-certs-count">0</div></div>
+          </div>
+          <div class="form-card">
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;">Quick Action Shortcuts</h3>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;">
+              <button class="btn btn-secondary" onclick="switchAdminView('view-projects'); openProjectEditor();"><i data-lucide="plus-circle" style="width:16px;height:16px;color:var(--accent-blue);"></i><span>+ Create New Project</span></button>
+              <button class="btn btn-secondary" onclick="switchAdminView('view-profile')"><i data-lucide="user-check" style="width:16px;height:16px;color:var(--accent-teal);"></i><span>Edit Personal Details</span></button>
+              <button class="btn btn-secondary" onclick="switchAdminView('view-resume')"><i data-lucide="upload" style="width:16px;height:16px;color:var(--accent-amber);"></i><span>Manage Resume PDF</span></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Personal Details -->
+        <section class="admin-view" id="view-profile">
+          <form id="profile-editor-form" class="form-card">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:20px;">Personal Details &amp; Public Branding</h3>
+            <div class="form-grid-2">
+              <div class="form-group"><label class="form-label">Full Name *</label><input type="text" id="prof-name" name="name" required></div>
+              <div class="form-group"><label class="form-label">Professional Title *</label><input type="text" id="prof-title" name="title" required></div>
+            </div>
+            <div class="form-group" style="margin-top:16px;"><label class="form-label">Short Headline *</label><input type="text" id="prof-headline" name="headline" required></div>
+            <div class="form-group" style="margin-top:16px;"><label class="form-label">Short Bio (Hero Summary)</label><textarea id="prof-short-bio" name="short_bio" rows="3"></textarea></div>
+            <div class="form-grid-3" style="margin-top:16px;">
+              <div class="form-group"><label class="form-label">Email *</label><input type="email" id="prof-email" name="email" required></div>
+              <div class="form-group"><label class="form-label">Phone</label><input type="text" id="prof-phone" name="phone"></div>
+              <div class="form-group"><label class="form-label">Location</label><input type="text" id="prof-location" name="location"></div>
+            </div>
+            <div class="form-grid-2" style="margin-top:16px;">
+              <div class="form-group"><label class="form-label">LinkedIn URL</label><input type="url" id="prof-linkedin" name="linkedin"></div>
+              <div class="form-group"><label class="form-label">GitHub URL</label><input type="url" id="prof-github" name="github"></div>
+            </div>
+            <div class="form-grid-3" style="margin-top:16px;">
+              <div class="form-group"><label class="form-label">Years of Experience</label><input type="text" id="prof-years-exp" name="years_experience" placeholder="2+"></div>
+              <div class="form-group"><label class="form-label">Projects Delivered</label><input type="text" id="prof-proj-count" name="projects_completed" placeholder="15+"></div>
+              <div class="form-group"><label class="form-label">Delivery Accuracy</label><input type="text" id="prof-satisfaction" name="satisfaction_rate" placeholder="99%"></div>
+            </div>
+            <div style="margin-top:20px;display:flex;align-items:center;gap:12px;">
+              <input type="checkbox" id="prof-open-to-work" name="open_to_work" style="width:18px;height:18px;">
+              <label for="prof-open-to-work" style="font-size:14px;font-weight:500;">Open to Work (Display live status pill on website)</label>
+            </div>
+            <div class="form-group" style="margin-top:12px;"><label class="form-label">Status Banner Text</label><input type="text" id="prof-status-text" name="status_text" placeholder="Available for Data Analyst & Product Analytics Roles"></div>
+            <div style="margin-top:28px;display:flex;justify-content:flex-end;"><button type="submit" class="btn btn-primary btn-lg"><i data-lucide="check" style="width:16px;height:16px;"></i><span>Save Profile Changes</span></button></div>
+          </form>
+        </section>
+
+        <!-- About Me -->
+        <section class="admin-view" id="view-about">
+          <form id="about-editor-form" class="form-card">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:20px;">About Me Narrative &amp; Philosophy</h3>
+            <div class="form-group"><label class="form-label">About Headline *</label><input type="text" id="about-form-headline" name="about_headline" required></div>
+            <div class="form-group" style="margin-top:16px;"><label class="form-label">Full Narrative</label><textarea id="about-form-text" name="about_text" rows="8" required></textarea></div>
+            <div style="margin-top:24px;display:flex;justify-content:flex-end;"><button type="submit" class="btn btn-primary btn-lg"><i data-lucide="check" style="width:16px;height:16px;"></i><span>Save About Content</span></button></div>
+          </form>
+        </section>
+
+        <!-- Project Manager -->
+        <section class="admin-view" id="view-projects">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:700;">Project Manager</h3>
+              <p style="font-size:13px;color:var(--text-secondary);">Manage case studies, screenshots, published/draft status, version history, and display hierarchy.</p>
+            </div>
+            <button class="btn btn-primary" id="add-project-btn-header" onclick="openProjectEditor()"><i data-lucide="plus" style="width:16px;height:16px;"></i><span>+ Add New Project</span></button>
+          </div>
+          <div id="admin-projects-list"></div>
+        </section>
+
+        <!-- Skills -->
+        <section class="admin-view" id="view-skills">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h3 style="font-size:18px;font-weight:700;">Technical Skills Management</h3>
+            <button class="btn btn-primary btn-sm" onclick="openSkillModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Skill</span></button>
+          </div>
+          <div id="admin-skills-list"></div>
+        </section>
+
+        <!-- Experience -->
+        <section class="admin-view" id="view-experience">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h3 style="font-size:18px;font-weight:700;">Work Experience &amp; Internships</h3>
+            <button class="btn btn-primary btn-sm" onclick="openExperienceModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Experience</span></button>
+          </div>
+          <div id="admin-experience-list"></div>
+        </section>
+
+        <!-- Education -->
+        <section class="admin-view" id="view-education">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h3 style="font-size:18px;font-weight:700;">Education Entries</h3>
+            <button class="btn btn-primary btn-sm" onclick="openEducationModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Education</span></button>
+          </div>
+          <div id="admin-education-list"></div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="admin-view" id="view-certifications">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h3 style="font-size:18px;font-weight:700;">Certifications</h3>
+            <button class="btn btn-primary btn-sm" onclick="openCertificationModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Certification</span></button>
+          </div>
+          <div id="admin-certifications-list"></div>
+        </section>
+
+        <!-- Resume -->
+        <section class="admin-view" id="view-resume">
+          <div class="form-card">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:12px;">Active Resume File</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">The public "Download Resume" button on your portfolio serves this active file.</p>
+            <div style="display:flex;align-items:center;gap:18px;background:var(--bg-card);padding:18px;border-radius:var(--radius-md);border:1px solid var(--border-subtle);margin-bottom:24px;">
+              <i data-lucide="file-text" style="width:36px;height:36px;color:var(--accent-blue);"></i>
+              <div style="flex:1;">
+                <div id="resume-current-filename" style="font-weight:600;font-size:15px;">Raavi_Purna_Satya_Kumar_Resume.pdf</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Last updated: <span id="resume-last-updated">2026-08-15</span> • Size: <span id="resume-filesize">245 KB</span></div>
+              </div>
+              <a id="resume-test-download" href="/uploads/Raavi_Purna_Satya_Kumar_Resume.pdf" target="_blank" download class="btn btn-secondary btn-sm"><i data-lucide="download" style="width:14px;height:14px;"></i><span>Test Download</span></a>
+            </div>
+            <div class="screenshot-uploader-zone" onclick="document.getElementById('resume-file-input').click()">
+              <i data-lucide="upload-cloud" style="width:32px;height:32px;color:var(--accent-blue);margin-bottom:8px;"></i>
+              <div style="font-size:14px;font-weight:600;">Click to upload / replace Resume PDF</div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Supports .pdf up to 10MB</div>
+              <input type="file" id="resume-file-input" accept="application/pdf" style="display:none;">
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="admin-view" id="view-settings">
+          <div class="form-card">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Security &amp; Admin Password</h3>
+            <form id="change-password-form" style="display:flex;flex-direction:column;gap:14px;max-width:460px;">
+              <div class="form-group"><label class="form-label">Current Password</label><input type="password" name="current_password" required placeholder="••••••••"></div>
+              <div class="form-group"><label class="form-label">New Password (minimum 6 characters)</label><input type="password" name="new_password" required placeholder="••••••••"></div>
+              <button type="submit" class="btn btn-primary btn-sm" style="align-self:flex-start;">Update Password</button>
+            </form>
+          </div>
+          <div class="form-card" style="margin-top:24px;">
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Optional Supabase Cloud Sync</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">Connect your portfolio to remote Supabase PostgreSQL cloud database.</p>
+            <form id="supabase-settings-form" style="display:flex;flex-direction:column;gap:14px;">
+              <div class="form-group"><label class="form-label">Supabase Project URL</label><input type="url" id="sb-url" name="supabase_url" placeholder="https://your-project.supabase.co"></div>
+              <div class="form-group"><label class="form-label">Supabase Anon Key</label><input type="text" id="sb-key" name="supabase_anon_key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></div>
+              <div style="display:flex;align-items:center;gap:10px;"><input type="checkbox" id="sb-enable" name="enable_supabase_sync" style="width:16px;height:16px;"><label for="sb-enable" style="font-size:13px;">Enable Auto-Sync to Supabase</label></div>
+              <button type="submit" class="btn btn-secondary btn-sm" style="align-self:flex-start;">Save Cloud Config</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- PROJECT EDITOR MODAL -->
+  <div class="modal-backdrop" id="project-editor-modal">
+    <div class="modal-box" style="max-width:960px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="project-modal-heading">+ Add New Project</h3>
+        <button class="modal-close" onclick="closeProjectEditor()"><i data-lucide="x"></i></button>
+      </div>
+      <form id="project-form" class="modal-body">
+        <input type="hidden" id="proj-edit-id" name="id">
+        <div style="display:flex;gap:20px;padding:12px 18px;background:var(--bg-input);border-radius:var(--radius-md);border:1px solid var(--border-subtle);flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="proj-form-published" name="published" checked style="width:18px;height:18px;"><label for="proj-form-published" style="font-size:13px;font-weight:600;color:#34d399;">Published (Visible on public website)</label></div>
+          <div style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="proj-form-featured" name="featured" style="width:18px;height:18px;"><label for="proj-form-featured" style="font-size:13px;font-weight:600;color:var(--accent-amber);">Featured Project</label></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Project Title *</label><input type="text" id="proj-form-title" name="title" required placeholder="e.g. SQL SaaS Churn Diagnostics"></div>
+          <div class="form-group"><label class="form-label">Category</label><input type="text" id="proj-form-category" name="category" placeholder="e.g. SQL & Business Intelligence"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Short Summary (Public card preview) *</label><input type="text" id="proj-form-short-desc" name="short_description" required placeholder="One or two punchy sentences describing what this analytics project solves."></div>
+        <div class="form-group"><label class="form-label">Full Case Study Overview</label><textarea id="proj-form-full-desc" name="full_description" rows="3" placeholder="Detailed introduction explaining background context."></textarea></div>
+        <div class="form-group"><label class="form-label">Technologies &amp; Tools (comma separated)</label><input type="text" id="proj-form-technologies" name="technologies" placeholder="PostgreSQL, Power BI, Python, DAX, Metabase"></div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Problem Statement</label><textarea id="proj-form-problem" name="problem_statement" rows="3" placeholder="What business problem existed?"></textarea></div>
+          <div class="form-group"><label class="form-label">Objective</label><textarea id="proj-form-objective" name="objective" rows="3" placeholder="What was the concrete analytical goal?"></textarea></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Dataset Details</label><textarea id="proj-form-dataset" name="dataset" rows="3" placeholder="Scale, volume, time span, and schema analyzed."></textarea></div>
+          <div class="form-group"><label class="form-label">Analytical Methodology</label><textarea id="proj-form-methodology" name="methodology" rows="3" placeholder="Data models, SQL CTEs, or statistical tests used."></textarea></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Key Findings &amp; Insights</label><textarea id="proj-form-findings" name="key_findings" rows="3" placeholder="What did the analysis reveal?"></textarea></div>
+          <div class="form-group"><label class="form-label">Business Impact &amp; ROI</label><textarea id="proj-form-impact" name="business_impact" rows="3" placeholder="Quantified results (e.g. -14.5% churn, +$185K ARR preserved)."></textarea></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">GitHub Repository URL</label><input type="url" id="proj-form-github" name="github_url" placeholder="https://github.com/..."></div>
+          <div class="form-group"><label class="form-label">Live Demo / Dashboard URL</label><input type="url" id="proj-form-demo" name="live_demo_url" placeholder="https://app.powerbi.com/... or demo link"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Screenshots &amp; Visuals</label>
+          <div class="screenshot-uploader-zone" onclick="document.getElementById('proj-image-file-input').click()">
+            <i data-lucide="image" style="width:28px;height:28px;color:var(--accent-blue);margin-bottom:6px;"></i>
+            <div style="font-size:13px;font-weight:600;">Click to upload screenshots (PNG, JPG, WebP)</div>
+            <div style="font-size:11px;color:var(--text-muted);">Multiple screenshots supported</div>
+            <input type="file" id="proj-image-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display:none;" multiple>
+          </div>
+          <div class="screenshot-preview-list" id="proj-screenshot-previews"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Version Change Note</label><input type="text" id="proj-form-change-note" name="change_note" placeholder="e.g. Added ARR impact metrics and updated schema screenshot"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border-subtle);flex-wrap:wrap;gap:12px;">
+          <button type="button" class="btn btn-secondary" onclick="previewCurrentProjectModal()"><i data-lucide="eye" style="width:14px;height:14px;"></i><span>Preview Live Project Card</span></button>
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn btn-secondary" onclick="closeProjectEditor()">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="proj-submit-btn"><i data-lucide="check" style="width:16px;height:16px;"></i><span>Save &amp; Publish Project</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PREVIEW PROJECT MODAL (Preview before publish) -->
+  <div class="modal-backdrop" id="admin-preview-modal">
+    <div class="modal-box" style="max-width:900px;">
+      <div class="modal-header">
+        <div>
+          <span id="prev-category" class="project-category-tag" style="position:static;display:inline-block;margin-bottom:4px;">Category</span>
+          <h3 class="modal-title" id="prev-title">Project Title</h3>
+        </div>
+        <button class="modal-close" onclick="closeAdminPreviewModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <img id="prev-img" src="" alt="Project Screenshot" class="case-study-main-img" style="border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
+        <p id="prev-desc" style="font-size:15px;color:#cbd5e1;line-height:1.7;"></p>
+        <div class="case-study-grid">
+          <div class="case-study-card"><div class="case-study-card-title">Problem Statement</div><div id="prev-problem" class="case-study-card-body"></div></div>
+          <div class="case-study-card"><div class="case-study-card-title">Objective</div><div id="prev-objective" class="case-study-card-body"></div></div>
+          <div class="case-study-card"><div class="case-study-card-title">Key Findings</div><div id="prev-findings" class="case-study-card-body"></div></div>
+          <div class="case-study-card" style="border-left:3px solid var(--accent-emerald);"><div class="case-study-card-title" style="color:var(--accent-emerald);">Business Impact</div><div id="prev-impact" class="case-study-card-body"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSION HISTORY MODAL -->
+  <div class="modal-backdrop" id="version-history-modal">
+    <div class="modal-box" style="max-width:760px;">
+      <div class="modal-header">
+        <div><h3 class="modal-title">Project Version History</h3><p id="version-history-proj-title" style="font-size:13px;color:var(--text-secondary);"></p></div>
+        <button class="modal-close" onclick="closeVersionHistory()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Review previous snapshots of this project and restore any past state with 1-click.</p>
+        <div id="version-history-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION DIALOG -->
+  <div class="modal-backdrop" id="delete-confirm-modal">
+    <div class="modal-box" style="max-width:440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color:var(--accent-rose);">Delete this project?</h3>
+        <button class="modal-close" onclick="closeDeleteConfirm()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p id="delete-confirm-msg" style="font-size:14px;color:var(--text-secondary);">This action will remove the project from your portfolio.</p>
+        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:16px;">
+          <button class="btn btn-secondary" onclick="closeDeleteConfirm()">Cancel</button>
+          <button class="btn btn-danger" id="confirm-delete-btn">Delete Project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNSAVED CHANGES MODAL -->
+  <div class="modal-backdrop" id="unsaved-changes-modal">
+    <div class="modal-box" style="max-width:440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color:var(--accent-amber);">Unsaved Changes</h3>
+        <button class="modal-close" onclick="closeUnsavedChangesModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:14px;color:var(--text-secondary);">You have unsaved changes. Leave without saving?</p>
+        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:16px;">
+          <button class="btn btn-primary" onclick="closeUnsavedChangesModal()">Stay</button>
+          <button class="btn btn-danger" id="discard-changes-btn">Discard Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERIC ITEM MODAL -->
+  <div class="modal-backdrop" id="generic-item-modal">
+    <div class="modal-box" style="max-width:600px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="generic-modal-title">Add Item</h3>
+        <button class="modal-close" onclick="closeGenericModal()"><i data-lucide="x"></i></button>
+      </div>
+      <form id="generic-item-form" class="modal-body"></form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="admin.js"></script>
+</body>
+</html>
