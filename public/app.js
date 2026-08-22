@@ -126,7 +126,8 @@ function renderProfile(profile, resume) {
   }
 
   // Resume Download Links
-  const resumeUrl = (resume && resume.file_url) ? resume.file_url : (profile.resume_url || '#');
+  let resumeUrl = (resume && resume.file_url) ? resume.file_url : (profile.resume_url || '/assets/Purna_Satya_Kumar_Raavi_Resume.pdf');
+  if (!resumeUrl || resumeUrl === '#') resumeUrl = '/assets/Purna_Satya_Kumar_Raavi_Resume.pdf';
   const resumeName = (resume && resume.filename) ? resume.filename : 'Purna_Satya_Kumar_Raavi_Resume.pdf';
   
   const navResume = document.getElementById('nav-resume-btn');
@@ -450,6 +451,12 @@ function renderContact(profile, socialLinks) {
   if (ghEl && profile.github) {
     ghEl.textContent = profile.github.replace(/^https?:\/\/(www\.)?/, '');
     ghEl.href = profile.github;
+  }
+
+  const linkedinEl = document.getElementById('contact-linkedin');
+  if (linkedinEl && profile.linkedin) {
+    linkedinEl.textContent = profile.linkedin.replace(/^https?:\/\/(www\.)?/, '');
+    linkedinEl.href = profile.linkedin;
   }
 }
 
