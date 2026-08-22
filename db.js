@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
@@ -201,6 +201,7 @@ module.exports = {
       experience: visibleExperience,
       education: state.education || [],
       certifications: state.certifications || [],
+      publications: state.publications || [],
       social_links: state.social_links || [],
       resume: state.resume || {},
       categories: state.site_settings ? state.site_settings.categories : []
@@ -218,6 +219,7 @@ module.exports = {
       experience: (state.experience || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0)),
       education: state.education || [],
       certifications: state.certifications || [],
+      publications: state.publications || [],
       social_links: state.social_links || [],
       resume: state.resume || {},
       site_settings: {
