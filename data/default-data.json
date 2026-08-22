@@ -1,0 +1,407 @@
+{
+  "profile": {
+    "name": "Purna Satya Kumar Raavi",
+    "title": "Data & Product Analyst",
+    "headline": "SQL • Python • Power BI • Tableau | Turning Data Into Clear, Actionable Insights",
+    "short_bio": "I’m a Computer Science graduate specializing in AI & Machine Learning, with a growing focus on data and product analytics. I enjoy working with raw data, finding the story behind the numbers, and turning that story into something people can actually use.",
+    "about_headline": "Turning messy data into clear, defensible business decisions.",
+    "about_text": "I’m a Computer Science graduate specializing in AI & Machine Learning, with a growing focus on data and product analytics. I enjoy working with raw data, finding the story behind the numbers, and turning that story into something people can actually use.\n\nMy hands-on experience includes SQL, Python, Excel, Power BI, Tableau, data cleaning, exploratory analysis, KPI reporting, and dashboard development. Through internships and personal projects, I’ve worked with datasets ranging from thousands to 1M+ records, giving me practical exposure to data quality, analysis, visualization, and business problem-solving.\n\nI’m still early in my career, but I’ve never wanted to learn only from theory. I build projects, experiment with different tools, question my results, and keep improving. My goal is simple: understand the problem first, let the data speak, and turn the analysis into a useful decision.",
+    "email": "purnaravi26@gmail.com",
+    "phone": "+91 9390912936",
+    "location": "Andhra Pradesh, India",
+    "linkedin": "https://linkedin.com/in/purnaravi26",
+    "github": "https://github.com/purnaravi26",
+    "resume_url": "/assets/Purna_Satya_Kumar_Raavi_Resume.pdf",
+    "profile_photo": "assets/avatar.svg",
+    "open_to_work": true,
+    "status_text": "Open to Work • Data & Product Analyst Roles",
+    "years_experience": "1+",
+    "projects_completed": "6+",
+    "satisfaction_rate": "100%",
+    "records_analyzed": "1M+",
+    "fraud_reduction": "30%",
+    "decision_visibility": "35%"
+  },
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "Insight360 — Enterprise Analytics for Customer Retention, Service Excellence & Workforce Inclusion",
+      "slug": "insight360-enterprise-analytics",
+      "short_description": "A multi-dashboard Power BI project exploring customer service, customer churn and retention, and workforce diversity across 3 business areas.",
+      "full_description": "Insight360 brought together 3 business areas, 3 datasets, and 3 Power BI dashboards into one analytics project. I worked with the data to transform raw information into interactive dashboards that make business performance easier to explore and understand.",
+      "category": "Power BI & Business Intelligence",
+      "technologies": ["Power BI", "Power Query", "DAX", "Data Modeling", "Data Cleaning", "Data Visualization"],
+      "problem_statement": "Business stakeholders lacked a unified analytics view across three disconnected departments: Call Centre Service Quality, Customer Retention & Churn, and Workforce Diversity & Inclusion.",
+      "objective": "Design an integrated 3-dashboard Power BI suite transforming multi-departmental datasets into actionable executive KPI reporting.",
+      "dataset": "3 distinct enterprise datasets covering call center interactions, customer retention logs, and workforce demographics.",
+      "methodology": "Data cleaning → Power Query transformation → Data modeling → DAX calculations → KPI development → Dashboard design → Business analysis.",
+      "key_findings": "Identified root causes of customer service bottlenecks and leading indicators influencing customer churn across subscription tiers.",
+      "business_impact": "Delivered 3 comprehensive interactive dashboards (Call Centre, Churn, Diversity) enabling management to explore operational health in real time.",
+      "github_url": "https://github.com/Purna2011/Insight360-Enterprise-Analytics-for-Customer-Retention-Service-Excellence-Workforce-Inclusion",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-powerbi-1.svg",
+        "assets/project-powerbi-2.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 1,
+      "created_at": "2026-01-15T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-2",
+      "title": "SQL Business Insights Project",
+      "slug": "sql-business-insights",
+      "short_description": "A practical SQL project answering commercial business questions through structured queries, joins, CTEs, and window functions.",
+      "full_description": "I built this project to move beyond simply practicing SQL syntax. The focus was on using SQL the way an analyst would in production — exploring data, joining tables, calculating metrics, identifying patterns, and turning query results into actionable business insights.",
+      "category": "SQL & Business Intelligence",
+      "technologies": ["SQL", "MySQL", "JOINs", "CTEs", "GROUP BY", "Aggregations", "Window Functions"],
+      "problem_statement": "Transactional database records needed structured aggregation to surface customer purchasing patterns and revenue trends for business stakeholders.",
+      "objective": "Structure complex SQL queries to explore customer transactions, calculate cohort metrics, and generate clear commercial summaries.",
+      "dataset": "Relational business database spanning customers, transactions, orders, and product line items.",
+      "methodology": "Data exploration → SQL transformations → Joins → Aggregations → CTEs → Window functions → Business analysis.",
+      "key_findings": "Uncovered key product velocity patterns and customer retention segments directly from relational database tables.",
+      "business_impact": "Created structured, reusable analytical SQL queries that streamline recurring monthly reporting.",
+      "github_url": "https://github.com/purnaravi26/sql-business-analysis",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-sql-1.svg",
+        "assets/project-sql-2.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 2,
+      "created_at": "2026-02-10T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-3",
+      "title": "T20 Cricket Batsmen Performance Analysis",
+      "slug": "t20-cricket-batsmen-analysis",
+      "short_description": "An interactive Power BI dashboard designed to explore, compare, and benchmark T20 batsmen performance across key match scenarios.",
+      "full_description": "I used cricket as a way to explore how data can turn individual performances into a bigger picture. The dashboard makes it easier to compare batsmen across different performance metrics instead of looking at statistics one by one.",
+      "category": "Power BI & Analytics",
+      "technologies": ["Power BI", "Power Query", "DAX", "Data Cleaning", "Data Visualization"],
+      "problem_statement": "Standard cricket averages fail to capture contextual batting impact across different phases and match situations.",
+      "objective": "Build a comparative Power BI dashboard evaluating strike rates, boundary percentages, and player impact.",
+      "dataset": "T20 cricket match datasets containing player scoring summaries and situational stats.",
+      "methodology": "Data preparation → Power Query → DAX measures → KPI development → Player comparison → Visualization.",
+      "key_findings": "Highlighted player performance variances under pressure and identified top-performing batsmen across phases.",
+      "business_impact": "Created an intuitive visual dashboard allowing users to filter, compare, and benchmark players simultaneously.",
+      "github_url": "https://github.com/purnaravi26",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-cricket-1.svg"
+      ],
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "order": 3,
+      "created_at": "2026-03-01T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-4",
+      "title": "Supermarket Sales Analysis",
+      "slug": "supermarket-sales-analysis",
+      "short_description": "A Python-based exploratory data analysis (EDA) of supermarket sales data to uncover patterns in sales and customer transactions.",
+      "full_description": "This was one of my projects for getting more comfortable with Python-based analysis. Rather than jumping straight into modeling, I focused on understanding the data first — what was happening, where patterns appeared, and what questions the dataset could answer.",
+      "category": "Python & Data Analysis",
+      "technologies": ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Exploratory Data Analysis"],
+      "problem_statement": "Supermarket transaction data contained untapped patterns regarding customer purchasing frequency, peak hours, and product line margins.",
+      "objective": "Perform exploratory data analysis with Python to uncover transaction patterns and branch performance metrics.",
+      "dataset": "Transactional sales records across supermarket product lines, customer types, and payment methods.",
+      "methodology": "Data inspection → Cleaning → Exploratory analysis → Visualization → Pattern identification.",
+      "key_findings": "Identified peak transaction windows, popular product lines, and branch revenue contributions.",
+      "business_impact": "Delivered visual data summaries with clear findings on customer purchasing trends.",
+      "github_url": "https://github.com/purnaravi26",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-product-1.svg"
+      ],
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "order": 4,
+      "created_at": "2026-04-10T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-5",
+      "title": "Traffic Sign Detection",
+      "slug": "traffic-sign-detection",
+      "short_description": "A CNN-based deep learning project for recognizing and classifying traffic signs from images.",
+      "full_description": "This project gave me practical exposure to computer vision and helped me understand how a model learns visual patterns rather than simply working with rows and columns of data.",
+      "category": "Machine Learning & AI",
+      "technologies": ["Python", "CNN", "Deep Learning", "Computer Vision", "OpenCV"],
+      "problem_statement": "Autonomous systems require reliable visual recognition of roadside traffic signs under varied lighting and angles.",
+      "objective": "Build a convolutional neural network (CNN) model to classify traffic sign images into designated categories.",
+      "dataset": "Image dataset of traffic signs across multiple classes and conditions.",
+      "methodology": "Image preprocessing → Dataset preparation → CNN development → Training → Evaluation → Prediction.",
+      "key_findings": "Achieved effective multi-class image classification with convolutional feature extractors.",
+      "business_impact": "Demonstrated practical computer vision architecture for image classification tasks.",
+      "github_url": "https://github.com/purnaravi26",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-product-2.svg"
+      ],
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "order": 5,
+      "created_at": "2026-05-15T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    },
+    {
+      "id": "proj-6",
+      "title": "Bike Sharing Demand Prediction",
+      "slug": "bike-sharing-demand-prediction",
+      "short_description": "A machine-learning project exploring historical bike-sharing behavior and demand prediction.",
+      "full_description": "I used this project to explore how historical patterns can be used to anticipate future demand. It helped me connect exploratory analysis with machine-learning modeling and understand the importance of preparing the data before building a model.",
+      "category": "Machine Learning & AI",
+      "technologies": ["Python", "Pandas", "NumPy", "Scikit-Learn", "Machine Learning", "EDA"],
+      "problem_statement": "Urban bike-sharing operators need accurate demand forecasts based on weather conditions, seasonal patterns, and time of day.",
+      "objective": "Develop a predictive regression model using historical rental records and environmental factors.",
+      "dataset": "Historical hourly and daily bike rental demand data with meteorological variables.",
+      "methodology": "Data preparation → Exploratory analysis → Feature analysis → Model development → Evaluation → Prediction.",
+      "key_findings": "Temperature, hour of day, and working day indicators showed the highest correlation with rental spikes.",
+      "business_impact": "Built a structured demand forecasting pipeline connecting data preparation with predictive evaluation.",
+      "github_url": "https://github.com/purnaravi26",
+      "live_demo_url": "",
+      "images": [
+        "assets/project-sql-2.svg"
+      ],
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "order": 6,
+      "created_at": "2026-06-01T10:00:00Z",
+      "updated_at": "2026-08-20T14:30:00Z",
+      "version": 1
+    }
+  ],
+  "project_versions": [
+    {
+      "version_id": "v-proj-1-1",
+      "project_id": "proj-1",
+      "version_number": 1,
+      "saved_at": "2026-08-20T14:30:00Z",
+      "saved_by": "admin",
+      "change_note": "Initial publish of Insight360 Enterprise Analytics project",
+      "snapshot": {
+        "title": "Insight360 — Enterprise Analytics for Customer Retention, Service Excellence & Workforce Inclusion",
+        "category": "Power BI & Business Intelligence",
+        "technologies": ["Power BI", "Power Query", "DAX", "Data Modeling", "Data Cleaning", "Data Visualization"]
+      }
+    }
+  ],
+  "skills": [
+    { "id": "sk-1", "name": "SQL (MySQL, SQL Server, T-SQL)", "category": "SQL & Databases", "level": "Advanced", "featured": true, "order": 1 },
+    { "id": "sk-2", "name": "CTEs, JOINs & Window Functions", "category": "SQL & Databases", "level": "Advanced", "featured": true, "order": 2 },
+    { "id": "sk-3", "name": "Data Aggregations & Query Design", "category": "SQL & Databases", "level": "Advanced", "featured": false, "order": 3 },
+    { "id": "sk-4", "name": "Power BI & DAX Calculations", "category": "Business Intelligence", "level": "Advanced", "featured": true, "order": 4 },
+    { "id": "sk-5", "name": "Power Query & Data Modeling", "category": "Business Intelligence", "level": "Advanced", "featured": true, "order": 5 },
+    { "id": "sk-6", "name": "Tableau Dashboards", "category": "Business Intelligence", "level": "Proficient", "featured": true, "order": 6 },
+    { "id": "sk-7", "name": "Excel (VLOOKUP, PivotTables, Charts)", "category": "Business Intelligence", "level": "Advanced", "featured": true, "order": 7 },
+    { "id": "sk-8", "name": "Python (Pandas, NumPy, Matplotlib)", "category": "Programming & Analytics", "level": "Advanced", "featured": true, "order": 8 },
+    { "id": "sk-9", "name": "Exploratory Data Analysis (EDA)", "category": "Programming & Analytics", "level": "Advanced", "featured": true, "order": 9 },
+    { "id": "sk-10", "name": "Statistical Analysis & Pattern Identification", "category": "Programming & Analytics", "level": "Proficient", "featured": false, "order": 10 },
+    { "id": "sk-11", "name": "C & C++ Programming", "category": "Programming & Analytics", "level": "Proficient", "featured": false, "order": 11 },
+    { "id": "sk-12", "name": "ETL Pipelines & Workflow Management", "category": "Data Engineering", "level": "Proficient", "featured": true, "order": 12 },
+    { "id": "sk-13", "name": "PySpark & Apache Spark", "category": "Data Engineering", "level": "Familiar", "featured": false, "order": 13 },
+    { "id": "sk-14", "name": "Azure Data Factory, dbt & Snowflake", "category": "Data Engineering", "level": "Familiar", "featured": false, "order": 14 },
+    { "id": "sk-15", "name": "Data Cleaning & Data Validation", "category": "Analytics Practices", "level": "Advanced", "featured": true, "order": 15 },
+    { "id": "sk-16", "name": "KPI Analysis & Data Storytelling", "category": "Analytics Practices", "level": "Advanced", "featured": true, "order": 16 },
+    { "id": "sk-17", "name": "Git, CI/CD, Google Sheets, Alteryx", "category": "Analytics Practices", "level": "Proficient", "featured": false, "order": 17 }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "role": "Data & Product Analytics Intern",
+      "company": "DigitalEdify",
+      "location": "India",
+      "start_date": "Jul 2025",
+      "end_date": "Feb 2026",
+      "current": false,
+      "description": "Worked with SQL, Excel, Power BI, and ETL workflows to support product and business analytics across 1M+ operational records.",
+      "responsibilities": [
+        "Analyzed 1M+ operational records for business and product-related analysis.",
+        "Worked on data governance and data-quality checks, helping reduce discrepancies and fraud risks by 30%.",
+        "Managed ETL pipelines and performance monitoring to ensure accurate data ingestion.",
+        "Built automated Power BI dashboards for recurring reporting, improving executive decision visibility by 35%."
+      ],
+      "technologies": ["SQL", "Excel", "Power BI", "ETL Pipelines", "Data Governance"],
+      "order": 1,
+      "visible": true
+    },
+    {
+      "id": "exp-2",
+      "role": "Data & Risk Analytics Intern",
+      "company": "Fox Trading Solutions – 1Stop.ai",
+      "location": "India (Remote)",
+      "start_date": "Apr 2025",
+      "end_date": "May 2025",
+      "current": false,
+      "description": "Worked with transactional and risk-related datasets using Python and SQL for analysis and forecasting.",
+      "responsibilities": [
+        "Cleaned and prepared transactional data for exploratory analysis and risk modeling.",
+        "Used SQL queries to explore transactional risk datasets and identify anomalies.",
+        "Generated data-driven insights to support operational resource allocation.",
+        "Collaborated across different stages of the analytics and software development lifecycle."
+      ],
+      "technologies": ["Python", "SQL", "Risk Analytics", "Data Cleaning", "Forecasting"],
+      "order": 2,
+      "visible": true
+    },
+    {
+      "id": "exp-3",
+      "role": "Network Analyst (AICTE Cisco Virtual Internship)",
+      "company": "Cisco / AICTE",
+      "location": "Remote",
+      "start_date": "Sep 2023",
+      "end_date": "Nov 2023",
+      "current": false,
+      "description": "Virtual internship focused on computer networking, packet routing, and network analysis.",
+      "responsibilities": [
+        "Completed structured simulations and packet-level network traffic analysis.",
+        "Applied network protocols, IP subnetting, and routing diagnostics."
+      ],
+      "technologies": ["Computer Networks", "Packet Analysis", "Routing Protocols"],
+      "order": 3,
+      "visible": true
+    },
+    {
+      "id": "exp-4",
+      "role": "IoT & Computer Vision Intern",
+      "company": "L&T IoT Internship",
+      "location": "India",
+      "start_date": "2023",
+      "end_date": "2023",
+      "current": false,
+      "description": "Built an eye-controlled interface using Python and OpenCV, working with blink and gaze-based interaction.",
+      "responsibilities": [
+        "Engineered real-time facial landmark detection and gaze tracking algorithms in OpenCV.",
+        "Integrated computer vision triggers with connected hardware devices."
+      ],
+      "technologies": ["Python", "OpenCV", "Computer Vision", "IoT"],
+      "order": 4,
+      "visible": true
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-1",
+      "degree": "B.Tech in Computer Science & Engineering (Specialization: AI & Machine Learning)",
+      "institution": "Lakireddy Bali Reddy College of Engineering (Autonomous)",
+      "location": "Andhra Pradesh, India",
+      "start_date": "2021",
+      "end_date": "2025",
+      "grade": "7.49 / 10 CGPA",
+      "description": "Specialized coursework: Database Management Systems, Data Structures & Algorithms, Artificial Intelligence, Machine Learning, Statistics."
+    },
+    {
+      "id": "edu-2",
+      "degree": "Intermediate / 12th (MPC)",
+      "institution": "Sri Nidhi Junior College",
+      "location": "Andhra Pradesh, India",
+      "start_date": "2019",
+      "end_date": "2021",
+      "grade": "83.4%",
+      "description": "Mathematics, Physics, and Chemistry."
+    },
+    {
+      "id": "edu-3",
+      "degree": "SSC / 10th Standard",
+      "institution": "Board of Secondary Education, Andhra Pradesh",
+      "location": "Andhra Pradesh, India",
+      "start_date": "2018",
+      "end_date": "2019",
+      "grade": "8.2 / 10 CGPA",
+      "description": "Secondary School Certificate."
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert-1",
+      "title": "Data Analytics & Visualization",
+      "issuer": "Accenture",
+      "issue_date": "Verified",
+      "credential_id": "",
+      "verification_url": "",
+      "image_url": "assets/badge-microsoft.svg"
+    },
+    {
+      "id": "cert-2",
+      "title": "Data Analytics",
+      "issuer": "Deloitte",
+      "issue_date": "Verified",
+      "credential_id": "",
+      "verification_url": "",
+      "image_url": "assets/badge-sql.svg"
+    },
+    {
+      "id": "cert-3",
+      "title": "Data Analysis with Python",
+      "issuer": "IBM",
+      "issue_date": "Verified",
+      "credential_id": "",
+      "verification_url": "",
+      "image_url": "assets/badge-google.svg"
+    },
+    {
+      "id": "cert-4",
+      "title": "Computer Networks",
+      "issuer": "Cisco",
+      "issue_date": "Verified",
+      "credential_id": "",
+      "verification_url": "",
+      "image_url": "assets/badge-microsoft.svg"
+    }
+  ],
+  "publications": [
+    {
+      "id": "pub-1",
+      "title": "RetinaGuardX: A Hybrid Model with Grad-CAM for Retinal Disease Detection",
+      "conference": "ICICDS-2025",
+      "status": "Accepted",
+      "description": "Research paper accepted at the International Conference on Intelligent Computing and Data Science (ICICDS-2025), developing a hybrid deep learning model with visual interpretability (Grad-CAM) for retinal disease diagnostics.",
+      "link": ""
+    }
+  ],
+  "social_links": [
+    { "id": "soc-1", "platform": "GitHub", "url": "https://github.com/purnaravi26", "icon": "github" },
+    { "id": "soc-2", "platform": "LinkedIn", "url": "https://linkedin.com/in/purnaravi26", "icon": "linkedin" },
+    { "id": "soc-3", "platform": "Email", "url": "mailto:purnaravi26@gmail.com", "icon": "mail" }
+  ],
+  "resume": {
+    "filename": "Purna_Satya_Kumar_Raavi_Resume.pdf",
+    "file_url": "/assets/Purna_Satya_Kumar_Raavi_Resume.pdf",
+    "last_updated": "2026-08-22",
+    "file_size": "245 KB",
+    "summary": "Updated resume for Purna Satya Kumar Raavi highlighting Data & Product Analytics, SQL, Python, Power BI, and 1M+ records analyzed."
+  },
+  "site_settings": {
+    "site_title": "Purna Satya Kumar Raavi | Data & Product Analyst Portfolio",
+    "admin_email": "purnaravi26@gmail.com",
+    "admin_password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "categories": [
+      "All",
+      "Power BI & Business Intelligence",
+      "SQL & Business Intelligence",
+      "Power BI & Analytics",
+      "Python & Data Analysis",
+      "Machine Learning & AI"
+    ],
+    "supabase_url": "",
+    "supabase_anon_key": "",
+    "enable_supabase_sync": false
+  }
+}
