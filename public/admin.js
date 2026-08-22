@@ -290,73 +290,132 @@ function setupEventListeners() {
     });
   }
 
-  // Screenshot File Uploader
+  // Helper: Client-side Image Compression & Resizing
+  function compressImage(file, maxWidth = 1400, quality = 0.85) {
+    return new Promise((resolve) => {
+      if (file.type === 'image/svg+xml' || file.size < 150 * 1024) {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Screenshot File Uploader (Works reliably on Local, Vercel, Render, Netlify)
   const imgInput = document.getElementById('proj-image-file-input');
   if (imgInput) {
     imgInput.addEventListener('change', async (e) => {
       const files = Array.from(e.target.files);
+      if (files.length === 0) return;
+      showToast(`Processing ${files.length} screenshot(s)...`, 'info');
+
       for (const file of files) {
-        const reader = new FileReader();
-        reader.onload = async () => {
+        try {
+          const dataUrl = await compressImage(file);
+          
+          let finalUrl = dataUrl;
           try {
             const res = await fetch('/api/upload', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, data: reader.result })
+              body: JSON.stringify({ filename: file.name, data: dataUrl })
             });
             const json = await res.json();
             if (json.success && json.file_url) {
-              currentProjectImages.push(json.file_url);
-              renderScreenshotPreviews();
-              showToast(`✓ Uploaded ${file.name}`, 'success');
+              finalUrl = json.file_url;
             }
-          } catch (err) {
-            showToast('Failed to upload image', 'error');
+          } catch (uploadErr) {
+            console.warn('[Upload] Falling back to direct image data URL:', uploadErr);
           }
-        };
-        reader.readAsDataURL(file);
+
+          currentProjectImages.push(finalUrl);
+          renderScreenshotPreviews();
+          isDirty = true;
+          showToast(`✓ Added screenshot: ${file.name}`, 'success');
+        } catch (err) {
+          console.error(err);
+          showToast(`Failed to process ${file.name}`, 'error');
+        }
       }
+      imgInput.value = '';
     });
   }
 
-  // Resume File Uploader
+  // Resume File Uploader (Works reliably on Local, Vercel, Render, Netlify)
   const resumeInput = document.getElementById('resume-file-input');
   if (resumeInput) {
     resumeInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
 
+      showToast('Processing resume file...', 'info');
+
       const reader = new FileReader();
       reader.onload = async () => {
+        const dataUrl = reader.result;
+        const sizeKb = Math.round(file.size / 1024);
+
+        let finalUrl = dataUrl;
         try {
-          const res = await fetch('/api/upload', {
+          const uploadRes = await fetch('/api/upload', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ filename: file.name, data: reader.result })
+            body: JSON.stringify({ filename: file.name, data: dataUrl })
           });
-          const json = await res.json();
-          if (json.success && json.file_url) {
-            // Update active resume
-            const updateRes = await fetch('/api/admin/resume', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                filename: file.name,
-                file_url: json.file_url,
-                last_updated: new Date().toISOString().split('T')[0],
-                file_size: `${json.size_kb} KB`
-              })
-            });
-            if (updateRes.ok) {
-              showToast('✓ Active resume updated! Public download button updated.', 'success');
-              await fetchAdminData();
-            }
+          const uploadJson = await uploadRes.json();
+          if (uploadJson.success && uploadJson.file_url) {
+            finalUrl = uploadJson.file_url;
           }
-        } catch (err) {
-          showToast('Failed to upload resume', 'error');
+        } catch (uploadErr) {
+          console.warn('[Upload] Using direct PDF Data URL for resume:', uploadErr);
+        }
+
+        try {
+          const updateRes = await fetch('/api/admin/resume', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              filename: file.name,
+              file_url: finalUrl,
+              last_updated: new Date().toISOString().split('T')[0],
+              file_size: `${sizeKb} KB`
+            })
+          });
+          const updateJson = await updateRes.json();
+          if (updateRes.ok && updateJson.success) {
+            showToast('✓ Active resume updated! Live "Download Resume" button updated.', 'success');
+            await fetchAdminData();
+          } else {
+            showToast('Failed to save resume settings', 'error');
+          }
+        } catch (saveErr) {
+          showToast('Failed to update resume', 'error');
         }
       };
       reader.readAsDataURL(file);
+      resumeInput.value = '';
     });
   }
 
