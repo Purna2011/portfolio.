@@ -1,4 +1,4 @@
-﻿// Public Portfolio Client Application
+// Public Portfolio Client Application
 let portfolioData = null;
 let activeCategory = 'All';
 
@@ -94,10 +94,18 @@ function renderProfile(profile, resume) {
 
   // Resume Download Links
   const resumeUrl = (resume && resume.file_url) ? resume.file_url : (profile.resume_url || '#');
+  const resumeName = (resume && resume.filename) ? resume.filename : 'Raavi_Purna_Satya_Kumar_Resume.pdf';
+  
   const navResume = document.getElementById('nav-resume-btn');
-  if (navResume) navResume.href = resumeUrl;
+  if (navResume) {
+    navResume.href = resumeUrl;
+    navResume.setAttribute('download', resumeName);
+  }
   const heroResume = document.getElementById('hero-download-resume');
-  if (heroResume) heroResume.href = resumeUrl;
+  if (heroResume) {
+    heroResume.href = resumeUrl;
+    heroResume.setAttribute('download', resumeName);
+  }
 }
 
 function renderCategories(categories, projects) {
