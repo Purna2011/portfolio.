@@ -343,6 +343,23 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { success: true, message: 'Certification deleted' });
       }
 
+      // Publications CRUD
+      if (pathname === '/api/admin/publications' && method === 'POST') {
+        const body = await parseBody(req);
+        if (Array.isArray(body)) {
+          const updated = db.savePublications(body);
+          return sendJson(res, 200, { success: true, message: 'Publications saved', data: updated });
+        } else {
+          const created = db.addPublication(body);
+          return sendJson(res, 201, { success: true, message: 'Publication added', data: created });
+        }
+      }
+      if (pathname.startsWith('/api/admin/publications/') && method === 'DELETE') {
+        const id = pathname.replace('/api/admin/publications/', '');
+        db.deletePublication(id);
+        return sendJson(res, 200, { success: true, message: 'Publication deleted' });
+      }
+
       // Resume Update
       if (pathname === '/api/admin/resume' && method === 'POST') {
         const body = await parseBody(req);
@@ -437,10 +454,14 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`  PORTFOLIO & CMS SERVER RUNNING`);
-  console.log(`  Public Portfolio: http://localhost:${PORT}`);
-  console.log(`  Private Admin:    http://localhost:${PORT}/admin`);
-  console.log(`======================================================\n`);
-});
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`  PORTFOLIO & CMS SERVER RUNNING`);
+    console.log(`  Public Portfolio: http://localhost:${PORT}`);
+    console.log(`  Private Admin:    http://localhost:${PORT}/admin`);
+    console.log(`======================================================\n`);
+  });
+}
+
+module.exports = server;
