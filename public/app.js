@@ -395,8 +395,11 @@ async function initPortfolio() {
     if (res.ok) {
       const json = await res.json();
       if (json.success && json.data && json.data.profile) {
-        // Only accept server data if it's the verified authentic profile, not the dummy template
-        if (json.data.profile.email === 'purnaravi26@gmail.com' || json.data.profile.name === 'Purna Satya Kumar Raavi') {
+        // Strictly verify that the server response contains the REAL authentic data, NOT the old dummy template
+        const isRealData = json.data.profile.email === 'purnaravi26@gmail.com' &&
+                           Array.isArray(json.data.projects) &&
+                           json.data.projects.some(p => p.title && p.title.includes('Insight360'));
+        if (isRealData) {
           portfolioData = json.data;
           renderAll(portfolioData);
         }
