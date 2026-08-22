@@ -552,6 +552,38 @@ module.exports = {
     return true;
   },
 
+  // Publications
+  savePublications(pubList) {
+    state.publications = pubList;
+    persistState();
+    syncStateToSqlite();
+    return state.publications;
+  },
+
+  addPublication(pub) {
+    const id = pub.id || ('pub-' + Date.now());
+    const newPub = {
+      id,
+      title: pub.title || 'Research Publication',
+      conference: pub.conference || 'Conference / Journal',
+      status: pub.status || 'Accepted',
+      description: pub.description || '',
+      link: pub.link || ''
+    };
+    state.publications = state.publications || [];
+    state.publications.push(newPub);
+    persistState();
+    syncStateToSqlite();
+    return newPub;
+  },
+
+  deletePublication(id) {
+    state.publications = (state.publications || []).filter(p => p.id !== id);
+    persistState();
+    syncStateToSqlite();
+    return true;
+  },
+
   // Resume
   updateResume(resumeData) {
     state.resume = { ...state.resume, ...resumeData };
