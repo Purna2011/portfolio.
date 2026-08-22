@@ -1,14 +1,370 @@
-// Public Portfolio Client Application
-let portfolioData = null;
+// Public Portfolio Client Application — Purna Satya Kumar Raavi
+
+const AUTHENTIC_MASTER_DATA = {
+  profile: {
+    name: "Purna Satya Kumar Raavi",
+    title: "Data & Product Analyst",
+    headline: "SQL • Python • Power BI • Tableau | Turning Data Into Clear, Actionable Insights",
+    short_bio: "I’m a Computer Science graduate specializing in AI & Machine Learning, with a growing focus on data and product analytics. I enjoy working with raw data, finding the story behind the numbers, and turning that story into something people can actually use.",
+    about_headline: "Turning messy data into clear, defensible business decisions.",
+    about_text: "I’m a Computer Science graduate specializing in AI & Machine Learning, with a growing focus on data and product analytics. I enjoy working with raw data, finding the story behind the numbers, and turning that story into something people can actually use.\n\nMy hands-on experience includes SQL, Python, Excel, Power BI, Tableau, data cleaning, exploratory analysis, KPI reporting, and dashboard development. Through internships and personal projects, I’ve worked with datasets ranging from thousands to 1M+ records, giving me practical exposure to data quality, analysis, visualization, and business problem-solving.\n\nI’m still early in my career, but I’ve never wanted to learn only from theory. I build projects, experiment with different tools, question my results, and keep improving. My goal is simple: understand the problem first, let the data speak, and turn the analysis into a useful decision.",
+    email: "purnaravi26@gmail.com",
+    phone: "+91 9390912936",
+    location: "Andhra Pradesh, India",
+    linkedin: "https://linkedin.com/in/purnaravi26",
+    github: "https://github.com/purnaravi26",
+    resume_url: "/assets/Purna_Satya_Kumar_Raavi_Resume.pdf",
+    profile_photo: "assets/avatar.svg",
+    open_to_work: true,
+    status_text: "Open to Work • Data & Product Analyst Roles",
+    years_experience: "1+",
+    projects_completed: "6+",
+    satisfaction_rate: "100%",
+    records_analyzed: "1M+",
+    fraud_reduction: "30%",
+    decision_visibility: "35%"
+  },
+  projects: [
+    {
+      id: "proj-1",
+      title: "Insight360 — Enterprise Analytics for Customer Retention, Service Excellence & Workforce Inclusion",
+      slug: "insight360-enterprise-analytics",
+      short_description: "A multi-dashboard Power BI project exploring customer service, customer churn and retention, and workforce diversity across 3 business areas.",
+      full_description: "Insight360 is an enterprise analytics project exploring customer service operations, customer retention risk, and workforce diversity across 3 dedicated interactive dashboards.",
+      category: "Power BI & Business Intelligence",
+      technologies: ["Power BI", "DAX", "Data Modeling", "ETL", "Excel"],
+      problem_statement: "Organizations often struggle to connect operational service metrics, customer churn risks, and workforce diversity into unified decision-making visibility.",
+      objective: "Build 3 interactive dashboards providing clear visibility into customer satisfaction, churn drivers, and gender representation across departments.",
+      dataset: "Enterprise customer service tickets, telecom churn datasets, and workforce demographic logs across multiple departments.",
+      methodology: "Built dynamic DAX measures, star schema relationships, conditional KPIs, and churn risk segmentations.",
+      key_findings: "Identified top churn drivers linked to contract terms and payment methods; uncovered specific customer service bottlenecks affecting resolution times.",
+      business_impact: "Equipped stakeholders with clear, self-serve dashboards to monitor customer retention, improve resolution KPIs, and track diversity goals.",
+      github_url: "https://github.com/Purna2011/Insight360-Enterprise-Analytics-for-Customer-Retention-Service-Excellence-Workforce-Inclusion",
+      live_demo_url: "",
+      images: ["assets/project-powerbi-1.svg"],
+      featured: true,
+      published: true,
+      order: 1,
+      version: 1
+    },
+    {
+      id: "proj-2",
+      title: "SQL Business Insights & Analytical Queries",
+      slug: "sql-business-insights",
+      short_description: "A practical SQL analytics project answering real business questions using advanced joins, aggregations, window functions, and CTEs.",
+      full_description: "Focused on practical SQL querying to extract business insights from transactional datasets, including customer purchasing behavior, revenue trends, and operational efficiency.",
+      category: "SQL & Business Intelligence",
+      technologies: ["SQL", "MySQL", "PostgreSQL", "Window Functions", "CTEs", "Data Aggregation"],
+      problem_statement: "Raw transactional data across multiple tables is difficult for decision-makers to interpret without clean analytical queries.",
+      objective: "Design clean, optimized SQL queries using CTEs and window functions to extract revenue metrics, customer cohorts, and sales trends.",
+      dataset: "Multi-table relational databases containing orders, customers, products, and payment transactions.",
+      methodology: "Applied Common Table Expressions (CTEs), multi-table JOINs, subqueries, and window ranking functions (ROW_NUMBER, DENSE_RANK).",
+      key_findings: "Extracted repeat customer purchase frequency, top-performing product categories, and monthly revenue growth rates.",
+      business_impact: "Streamlined analytical query extraction, reducing manual spreadsheet reporting effort.",
+      github_url: "https://github.com/purnaravi26/sql-business-analysis",
+      live_demo_url: "",
+      images: ["assets/project-sql-1.svg"],
+      featured: true,
+      published: true,
+      order: 2,
+      version: 1
+    },
+    {
+      id: "proj-3",
+      title: "T20 Cricket Batsmen Performance Analysis",
+      slug: "t20-cricket-batsmen-analysis",
+      short_description: "Power BI dashboard analyzing batsman strike rates, averages, boundaries, and performance benchmarks.",
+      full_description: "Interactive sports analytics dashboard benchmarking batsmen across match phases, boundary percentages, and run contributions.",
+      category: "Power BI & Analytics",
+      technologies: ["Power BI", "DAX", "Data Modeling", "Excel", "Data Cleaning"],
+      problem_statement: "Evaluating cricket batsmen solely on traditional averages overlooks strike rate impact and boundary frequency.",
+      objective: "Build a comprehensive Power BI dashboard to compare batsman efficiency across runs, strike rate, and boundary percentages.",
+      dataset: "Ball-by-ball and match-level T20 cricket player performance records.",
+      methodology: "Transformed raw cricket data, created DAX measures for strike rates and boundary contributions, and built player comparison visual matrix.",
+      key_findings: "Highlighted high-impact batsmen who maintain strong strike rates in middle and death overs.",
+      business_impact: "Demonstrated data modeling and sports analytics visualization techniques for player performance benchmarking.",
+      github_url: "https://github.com/purnaravi26",
+      live_demo_url: "",
+      images: ["assets/project-cricket-1.svg"],
+      featured: false,
+      published: true,
+      order: 3,
+      version: 1
+    },
+    {
+      id: "proj-4",
+      title: "Supermarket Sales Analysis",
+      slug: "supermarket-sales-analysis",
+      short_description: "Exploratory data analysis of retail transactions across product lines, payment modes, and customer ratings.",
+      full_description: "In-depth exploratory data analysis uncovering sales patterns, gross income drivers, and customer satisfaction across store branches.",
+      category: "Python & Data Analysis",
+      technologies: ["Python", "Pandas", "Matplotlib", "Seaborn", "EDA"],
+      problem_statement: "Supermarket chains need clarity on which product lines drive profitability and how branch performance differs.",
+      objective: "Perform exploratory data analysis to identify top revenue-generating product lines, branch performance differences, and payment preferences.",
+      dataset: "Historical supermarket transaction records across multiple branch locations.",
+      methodology: "Cleaned datasets with Pandas, analyzed distributions, and visualized correlation between ratings, gross income, and product categories.",
+      key_findings: "Identified highest-margin product lines and peak shopping hours across branches.",
+      business_impact: "Provides actionable guidance on stock priority and targeted promotions for high-margin categories.",
+      github_url: "https://github.com/purnaravi26",
+      live_demo_url: "",
+      images: ["assets/project-product-1.svg"],
+      featured": false,
+      published: true,
+      order: 4,
+      version: 1
+    },
+    {
+      id: "proj-5",
+      title: "Traffic Sign Detection",
+      slug: "traffic-sign-detection",
+      short_description: "Computer vision and deep learning project classifying traffic signs to support intelligent transportation systems.",
+      full_description: "Implemented deep convolutional neural network models to accurately recognize and classify traffic signs under varying road and lighting conditions.",
+      category: "Machine Learning & AI",
+      technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "CNN"],
+      problem_statement: "Autonomous systems require high-accuracy real-time traffic sign recognition under diverse weather and lighting conditions.",
+      objective: "Train a convolutional neural network (CNN) model to accurately identify and classify multiple categories of traffic signs.",
+      dataset: "German Traffic Sign Recognition Benchmark (GTSRB) dataset containing thousands of annotated sign images.",
+      methodology: "Preprocessed images with OpenCV, augmented training datasets, and trained multi-layer CNN with dropout and batch normalization.",
+      key_findings: "Achieved high classification accuracy across 40+ traffic sign classes with strong generalization.",
+      business_impact: "Applied deep learning and computer vision techniques for real-world automated recognition systems.",
+      github_url: "https://github.com/purnaravi26",
+      live_demo_url: "",
+      images: ["assets/project-sql-2.svg"],
+      featured: false,
+      published: true,
+      order: 5,
+      version: 1
+    },
+    {
+      id: "proj-6",
+      title: "Bike Sharing Demand Prediction",
+      slug: "bike-sharing-demand-prediction",
+      short_description: "Regression modeling to forecast hourly bike rental demand using weather, seasonal, and temporal variables.",
+      full_description: "Built and evaluated multiple regression models to predict hourly rental demand for bike-sharing programs, helping optimize fleet distribution.",
+      category: "Machine Learning & AI",
+      technologies: ["Python", "Scikit-Learn", "Regression", "Pandas", "Feature Engineering"],
+      problem_statement: "Bike sharing operators face vehicle shortages or surpluses when hourly rental demand fluctuates unpredictably.",
+      objective: "Build regression models to forecast hourly rental demand based on weather, temperature, humidity, and calendar variables.",
+      dataset: "Historical hourly bike sharing rental logs with associated meteorological data.",
+      methodology: "Engineered seasonal and peak-hour features, trained Linear Regression, Random Forest, and Gradient Boosting regressors.",
+      key_findings: "Temperature, hour of day, and working day indicators were the strongest predictors of rental spikes.",
+      business_impact: "Enables proactive fleet rebalancing across stations ahead of morning and evening commute hours.",
+      github_url: "https://github.com/purnaravi26",
+      live_demo_url: "",
+      images: ["assets/project-powerbi-2.svg"],
+      featured: false,
+      published: true,
+      order: 6,
+      version: 1
+    }
+  ],
+  skills: [
+    { id: "sk-1", name: "SQL (CTEs, Window Functions, Joins, Aggregations)", category: "Data Querying & Databases", level: "Advanced", featured: true, order: 1 },
+    { id: "sk-2", name: "MySQL & PostgreSQL", category: "Data Querying & Databases", level: "Advanced", featured: true, order: 2 },
+    { id: "sk-3", name: "Power BI (DAX, Data Modeling, Star Schema, Power Query)", category: "Business Intelligence & Visualization", level: "Advanced", featured: true, order: 3 },
+    { id: "sk-4", name: "Tableau & Interactive Dashboards", category: "Business Intelligence & Visualization", level: "Proficient", featured: true, order: 4 },
+    { id: "sk-5", name: "KPI Reporting & Business Performance Metrics", category: "Business Intelligence & Visualization", level: "Advanced", featured: true, order: 5 },
+    { id: "sk-6", name: "Python (Pandas, NumPy, Matplotlib, Seaborn)", category: "Programming & Analytics", level: "Advanced", featured: true, order: 6 },
+    { id: "sk-7", name: "Exploratory Data Analysis (EDA) & Data Cleaning", category: "Programming & Analytics", level: "Advanced", featured: true, order: 7 },
+    { id: "sk-8", name: "ETL Pipelines & Automated Scripts", category: "Programming & Analytics", level: "Proficient", featured: false, order: 8 },
+    { id: "sk-9", name: "Product Analytics & Funnel Analysis", category: "Product & Business Strategy", level: "Proficient", featured: true, order: 9 },
+    { id: "sk-10", name: "Customer Retention & Churn Analysis", category: "Product & Business Strategy", level: "Proficient", featured: true, order: 10 },
+    { id: "sk-11", name: "Advanced Excel (Pivot Tables, Power Query, Formulas)", category: "Tools & Frameworks", level: "Advanced", featured: true, order: 11 },
+    { id: "sk-12", name: "Git & GitHub Version Control", category: "Tools & Frameworks", level: "Proficient", featured: false, order: 12 },
+    { id: "sk-13", name: "Machine Learning & AI Foundations (CNN, Regression)", category: "Tools & Frameworks", level: "Proficient", featured: false, order: 13 }
+  ],
+  experience: [
+    {
+      id: "exp-1",
+      role: "Data & Product Analytics Intern",
+      company: "DigitalEdify",
+      location: "India",
+      start_date: "Jul 2025",
+      end_date: "Feb 2026",
+      current: false,
+      description: "Worked with SQL, Excel, Power BI, and ETL pipelines to analyze operational records, support business analysis, and build automated KPI reporting.",
+      responsibilities: [
+        "Analyzed 1M+ operational records for business and product-related analysis.",
+        "Worked on data governance and data-quality checks, helping reduce discrepancies and fraud risks by 30%.",
+        "Built automated reporting workflows and Power BI dashboards, improving visibility for business decisions by 35%."
+      ],
+      technologies: ["SQL", "Excel", "Power BI", "ETL Pipelines"],
+      order: 1,
+      visible: true
+    },
+    {
+      id: "exp-2",
+      role: "Data & Risk Analytics Intern",
+      company: "Fox Trading Solutions – 1Stop.ai",
+      location: "India",
+      start_date: "Apr 2025",
+      end_date: "May 2025",
+      current: false,
+      description: "Explored risk analytics, data cleaning, and statistical patterns to assist data-driven operational decisions.",
+      responsibilities: [
+        "Analyzed risk patterns and transactional datasets using Python and SQL.",
+        "Supported analytical workflows and reporting dashboards to assist decision-making.",
+        "Delivered actionable findings on data patterns to support operational resource allocation."
+      ],
+      technologies: ["Python", "SQL", "Excel", "Risk Analytics"],
+      order: 2,
+      visible: true
+    },
+    {
+      id: "exp-3",
+      role: "Network Analyst (Virtual Internship)",
+      company: "AICTE Cisco Virtual Internship",
+      location: "Virtual",
+      start_date: "Sep 2023",
+      end_date: "Nov 2023",
+      current: false,
+      description: "Gained foundational experience in network analysis, protocols, and data infrastructure monitoring.",
+      responsibilities: [
+        "Monitored network topology and traffic flows using Cisco Packet Tracer.",
+        "Analyzed network logs and diagnostic metrics to identify latency bottlenecks."
+      ],
+      technologies: ["Networking", "Cisco Packet Tracer", "Network Analytics"],
+      order: 3,
+      visible: true
+    },
+    {
+      id: "exp-4",
+      role: "IoT & Computer Vision Project Intern",
+      company: "L&T IoT Internship",
+      location: "India",
+      start_date: "2023",
+      end_date: "2023",
+      current: false,
+      description: "Built an eye-controlled interface project utilizing Python and OpenCV for assistive device interaction.",
+      responsibilities: [
+        "Developed computer vision algorithms for real-time eye gaze tracking using OpenCV.",
+        "Integrated sensor outputs with hardware controllers for hands-free device control."
+      ],
+      technologies: ["Python", "OpenCV", "IoT", "Computer Vision"],
+      order: 4,
+      visible: true
+    }
+  ],
+  education: [
+    {
+      id: "edu-1",
+      degree: "B.Tech in Computer Science and Engineering (Artificial Intelligence & Machine Learning)",
+      institution: "Lakireddy Bali Reddy College of Engineering",
+      location: "Mylavaram, Andhra Pradesh, India",
+      start_date: "2021",
+      end_date: "2025",
+      grade: "7.49 / 10 CGPA",
+      description: "Specialized coursework: Database Management Systems (DBMS), Data Structures & Algorithms, Machine Learning, Deep Learning, Python Programming, Probability & Statistics."
+    },
+    {
+      id: "edu-2",
+      degree: "Intermediate (MPC)",
+      institution: "Sri Nidhi Junior College",
+      location: "Andhra Pradesh, India",
+      start_date: "2019",
+      end_date: "2021",
+      grade: "83.4%",
+      description: "Mathematics, Physics, Chemistry."
+    },
+    {
+      id: "edu-3",
+      degree: "Secondary School Certificate (SSC)",
+      institution: "Dr. K.K.R. Gowtham Concept School",
+      location: "Andhra Pradesh, India",
+      start_date: "2018",
+      end_date: "2019",
+      grade: "8.2 / 10 CGPA",
+      description: "General Secondary Education with distinction in Mathematics and Science."
+    }
+  ],
+  certifications: [
+    {
+      id: "cert-1",
+      title: "Data Analytics & Visualization Job Simulation",
+      issuer: "Accenture (Forage)",
+      issue_date: "Verified",
+      credential_id: "",
+      verification_url: "",
+      image_url: "assets/badge-microsoft.svg"
+    },
+    {
+      id: "cert-2",
+      title: "Power BI Job Simulation",
+      issuer: "PwC Switzerland (Forage)",
+      issue_date: "Verified",
+      credential_id: "",
+      verification_url: "",
+      image_url: "assets/badge-microsoft.svg"
+    },
+    {
+      id: "cert-3",
+      title: "Data Visualization: Empowering Business with Effective Insights",
+      issuer: "Tata (Forage)",
+      issue_date: "Verified",
+      credential_id: "",
+      verification_url: "",
+      image_url: "assets/badge-google.svg"
+    },
+    {
+      id: "cert-4",
+      title: "Python for Data Science",
+      issuer: "IBM",
+      issue_date: "Verified",
+      credential_id: "",
+      verification_url: "",
+      image_url: "assets/badge-sql.svg"
+    },
+    {
+      id: "cert-5",
+      title: "Data Science Orientation",
+      issuer: "IBM",
+      issue_date: "Verified",
+      credential_id: "",
+      verification_url: "",
+      image_url: "assets/badge-sql.svg"
+    }
+  ],
+  publications: [
+    {
+      id: "pub-1",
+      title: "RetinaGuardX: A Hybrid Model with Grad-CAM for Retinal Disease Detection",
+      conference: "ICICDS-2025",
+      status: "Accepted",
+      description: "Research paper developing a hybrid deep learning model enhanced with Grad-CAM interpretability for high-accuracy retinal disease screening. Accepted for presentation at ICICDS-2025.",
+      link: ""
+    }
+  ],
+  social_links: [
+    { id: "soc-1", platform: "GitHub", url: "https://github.com/purnaravi26", icon: "github" },
+    { id: "soc-2", platform: "LinkedIn", url: "https://linkedin.com/in/purnaravi26", icon: "linkedin" },
+    { id: "soc-3", platform: "Email", url: "mailto:purnaravi26@gmail.com", icon: "mail" }
+  ],
+  resume: {
+    filename: "Purna_Satya_Kumar_Raavi_Resume.pdf",
+    file_url: "/assets/Purna_Satya_Kumar_Raavi_Resume.pdf",
+    last_updated: "2026-08-22",
+    file_size: "245 KB"
+  },
+  categories: [
+    "All",
+    "Power BI & Business Intelligence",
+    "SQL & Business Intelligence",
+    "Power BI & Analytics",
+    "Python & Data Analysis",
+    "Machine Learning & AI"
+  ]
+};
+
+let portfolioData = AUTHENTIC_MASTER_DATA;
 let activeCategory = 'All';
 
 async function initPortfolio() {
-  // Check local live cache first for instantaneous persistence
+  // 1. Check local live cache (from Admin panel edits)
   const cached = localStorage.getItem('portfolio_live_state');
   if (cached) {
     try {
       const parsed = JSON.parse(cached);
-      if (parsed && parsed.profile) {
+      if (parsed && parsed.profile && parsed.profile.name === "Purna Satya Kumar Raavi") {
         portfolioData = {
           profile: parsed.profile,
           projects: (parsed.projects || []).filter(p => p.published),
@@ -18,33 +374,36 @@ async function initPortfolio() {
           certifications: parsed.certifications || [],
           publications: parsed.publications || [],
           social_links: parsed.social_links || [],
-          resume: parsed.resume || {},
-          categories: parsed.site_settings?.categories || []
+          resume: parsed.resume || AUTHENTIC_MASTER_DATA.resume,
+          categories: parsed.site_settings?.categories || AUTHENTIC_MASTER_DATA.categories
         };
         renderAll(portfolioData);
+        return;
       }
     } catch (e) {
       console.warn('Cache parse error:', e);
     }
   }
 
+  // 2. Render verified authentic master data immediately (Guarantees Picture 1 for every visitor)
+  portfolioData = AUTHENTIC_MASTER_DATA;
+  renderAll(portfolioData);
+
+  // 3. Optional live sync from server API (only accept if it has updated real data)
   try {
     const res = await fetch('/api/portfolio');
     if (res.ok) {
       const json = await res.json();
-      if (json.success && json.data) {
-        // If no local overrides exist, use server data
-        if (!cached) {
+      if (json.success && json.data && json.data.profile) {
+        // Only accept server data if it's the verified authentic profile, not the dummy template
+        if (json.data.profile.email === 'purnaravi26@gmail.com' || json.data.profile.name === 'Purna Satya Kumar Raavi') {
           portfolioData = json.data;
           renderAll(portfolioData);
         }
       }
     }
   } catch (err) {
-    console.error('Error fetching live portfolio:', err);
-    if (!portfolioData) {
-      showToast('Failed to load portfolio data', 'error');
-    }
+    console.warn('Server sync bypassed, using verified master data.');
   }
 }
 
@@ -65,24 +424,19 @@ function renderAll(data) {
 
 function renderProfile(profile, resume) {
   if (!profile) return;
-  
-  // Page Title & Header
-  if (profile.name) {
-    document.title = `${profile.name} | ${profile.title || 'Data & Product Analyst'}`;
-    const brandName = document.getElementById('nav-brand-name');
-    if (brandName) brandName.textContent = profile.name;
-    const footerName = document.getElementById('footer-name');
-    if (footerName) footerName.textContent = profile.name;
-  }
-  if (profile.title) {
-    const brandTitle = document.getElementById('nav-brand-title');
-    if (brandTitle) brandTitle.textContent = profile.title;
-  }
 
-  // Hero Title & Headline
-  const heroNameTitle = document.getElementById('hero-name-title');
-  if (heroNameTitle) {
-    heroNameTitle.textContent = 'Turning Data Into Clear, Actionable Insights.';
+  const pageTitle = document.getElementById('page-title');
+  if (pageTitle) pageTitle.textContent = `${profile.name} | ${profile.title}`;
+
+  const navName = document.getElementById('nav-brand-name');
+  if (navName) navName.textContent = profile.name;
+
+  const navTitle = document.getElementById('nav-brand-title');
+  if (navTitle) navTitle.textContent = profile.title;
+
+  const heroName = document.getElementById('hero-name-title');
+  if (heroName) {
+    heroName.innerHTML = `Turning Data Into Clear,<br><span class="gradient-text">Actionable Insights.</span>`;
   }
 
   const heroHeadline = document.getElementById('hero-headline');
@@ -219,125 +573,126 @@ function renderCategories(categories, projects) {
   });
 }
 
-function renderProjects(projects, category) {
+function renderProjects(projects, filterCategory) {
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
-  let filtered = projects || [];
-  if (category && category !== 'All') {
-    filtered = filtered.filter(p => p.category === category);
-  }
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--text-muted);">
-      No projects found in category "${escapeHtml(category)}".
-    </div>`;
+  if (!projects || projects.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 48px; color: var(--text-muted);">No projects available in this category.</div>`;
     return;
   }
 
-  grid.innerHTML = filtered.map(p => {
-    const primaryImg = (p.images && p.images.length > 0) ? p.images[0] : 'assets/project-powerbi-1.svg';
-    const techChips = (p.technologies || []).slice(0, 4).map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('');
+  const filtered = filterCategory === 'All' 
+    ? projects 
+    : projects.filter(p => p.category === filterCategory);
 
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 48px; color: var(--text-muted);">No projects found under "${escapeHtml(filterCategory)}".</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(proj => {
+    const mainImg = (proj.images && proj.images.length > 0) ? proj.images[0] : 'assets/project-powerbi-1.svg';
+    const techBadges = (proj.technologies || []).slice(0, 4).map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('');
+    
     return `
-      <div class="project-card" data-project-id="${escapeHtml(p.id)}">
-        <div class="project-thumb-wrap">
-          <img src="${escapeHtml(primaryImg)}" alt="${escapeHtml(p.title)}" class="project-thumb-img" loading="lazy">
-          ${p.featured ? `<div class="project-featured-badge"><i data-lucide="star" style="width:12px;height:12px;fill:#f59e0b;"></i> Featured</div>` : ''}
-          <div class="project-category-tag">${escapeHtml(p.category || 'Data Analytics')}</div>
+      <article class="project-card" data-id="${proj.id}">
+        <div class="project-card-img-wrap" onclick="openProjectModal('${proj.id}')">
+          <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(proj.title)}" class="project-card-img" loading="lazy">
+          <span class="project-category-tag">${escapeHtml(proj.category || 'Data Analytics')}</span>
+          ${proj.featured ? '<span class="project-featured-tag">★ Featured</span>' : ''}
         </div>
-
-        <div class="project-card-content">
-          <h3 class="project-card-title">${escapeHtml(p.title)}</h3>
-          <p class="project-card-desc">${escapeHtml(p.short_description || p.full_description || '')}</p>
-
-          <div class="project-tech-tags">
-            ${techChips}
+        <div class="project-card-body">
+          <h3 class="project-card-title" onclick="openProjectModal('${proj.id}')">${escapeHtml(proj.title)}</h3>
+          <p class="project-card-desc">${escapeHtml(proj.short_description || '')}</p>
+          <div class="project-tech-stack">
+            ${techBadges}
           </div>
-
           <div class="project-card-footer">
-            <span class="view-case-study">
-              <span>Read Case Study</span>
-              <i data-lucide="arrow-up-right" style="width:14px;height:14px;"></i>
-            </span>
-
-            <div class="project-ext-links" onclick="event.stopPropagation()">
-              ${p.github_url ? `<a href="${escapeHtml(p.github_url)}" target="_blank" title="GitHub Repo"><i data-lucide="github" style="width:16px;height:16px;"></i></a>` : ''}
-              ${p.live_demo_url ? `<a href="${escapeHtml(p.live_demo_url)}" target="_blank" title="Live Demo"><i data-lucide="external-link" style="width:16px;height:16px;"></i></a>` : ''}
+            <button class="btn btn-secondary btn-sm" onclick="openProjectModal('${proj.id}')">
+              <span>View Case Study</span>
+              <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </button>
+            <div class="project-links-group">
+              ${proj.github_url ? `<a href="${escapeHtml(proj.github_url)}" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>` : ''}
+              ${proj.live_demo_url ? `<a href="${escapeHtml(proj.live_demo_url)}" target="_blank" class="icon-link" title="Live Demo"><i data-lucide="external-link" style="width:16px;height:16px;"></i></a>` : ''}
             </div>
           </div>
         </div>
-      </div>
+      </article>
     `;
   }).join('');
 
-  grid.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const projId = card.getAttribute('data-project-id');
-      const project = (portfolioData.projects || []).find(p => p.id === projId);
-      if (project) openProjectModal(project);
-    });
-  });
-
-  if (window.lucide) lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
-function openProjectModal(p) {
+function openProjectModal(projectId) {
+  if (!portfolioData || !portfolioData.projects) return;
+  const proj = portfolioData.projects.find(p => p.id === projectId);
+  if (!proj) return;
+
   const modal = document.getElementById('project-modal');
   if (!modal) return;
 
-  document.getElementById('modal-title').textContent = p.title || 'Case Study';
-  document.getElementById('modal-category').textContent = p.category || 'Data Analytics';
-  document.getElementById('modal-full-desc').textContent = p.full_description || p.short_description || '';
-
-  const images = (p.images && p.images.length > 0) ? p.images : ['assets/project-powerbi-1.svg'];
-  const mainImg = document.getElementById('modal-main-img');
-  mainImg.src = images[0];
-
-  const thumbsContainer = document.getElementById('modal-thumbs');
-  if (images.length > 1) {
-    thumbsContainer.style.display = 'flex';
-    thumbsContainer.innerHTML = images.map((img, idx) => `
-      <div class="thumb-preview ${idx === 0 ? 'active' : ''}" data-src="${escapeHtml(img)}">
-        <img src="${escapeHtml(img)}" alt="Thumb ${idx + 1}">
-      </div>
-    `).join('');
-
-    thumbsContainer.querySelectorAll('.thumb-preview').forEach(th => {
-      th.addEventListener('click', () => {
-        thumbsContainer.querySelectorAll('.thumb-preview').forEach(t => t.classList.remove('active'));
-        th.classList.add('active');
-        mainImg.src = th.getAttribute('data-src');
-      });
-    });
-  } else {
-    thumbsContainer.style.display = 'none';
+  document.getElementById('modal-project-title').textContent = proj.title;
+  document.getElementById('modal-project-category').textContent = proj.category || 'Data Analytics';
+  
+  const imgEl = document.getElementById('modal-main-img');
+  if (imgEl) {
+    const mainImg = (proj.images && proj.images.length > 0) ? proj.images[0] : 'assets/project-powerbi-1.svg';
+    imgEl.src = mainImg;
+    imgEl.alt = proj.title;
   }
 
-  const techContainer = document.getElementById('modal-tech-tags');
-  techContainer.innerHTML = (p.technologies || []).map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('');
-
-  document.getElementById('modal-problem').textContent = p.problem_statement || 'N/A';
-  document.getElementById('modal-objective').textContent = p.objective || 'N/A';
-  document.getElementById('modal-dataset').textContent = p.dataset || 'N/A';
-  document.getElementById('modal-methodology').textContent = p.methodology || 'N/A';
-  document.getElementById('modal-findings').textContent = p.key_findings || 'N/A';
-  document.getElementById('modal-impact').textContent = p.business_impact || 'N/A';
-
-  const ghLink = document.getElementById('modal-github-link');
-  if (p.github_url) {
-    ghLink.href = p.github_url;
-    ghLink.style.display = 'inline-flex';
-  } else {
-    ghLink.style.display = 'none';
+  const galleryEl = document.getElementById('modal-gallery-thumbs');
+  if (galleryEl) {
+    if (proj.images && proj.images.length > 1) {
+      galleryEl.innerHTML = proj.images.map((src, i) => `
+        <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="switchModalMainImage('${escapeHtml(src)}', this)">
+          <img src="${escapeHtml(src)}" alt="Thumbnail ${i + 1}">
+        </div>
+      `).join('');
+      galleryEl.style.display = 'flex';
+    } else {
+      galleryEl.innerHTML = '';
+      galleryEl.style.display = 'none';
+    }
   }
 
-  const demoLink = document.getElementById('modal-demo-link');
-  if (p.live_demo_url) {
-    demoLink.href = p.live_demo_url;
-    demoLink.style.display = 'inline-flex';
-  } else {
-    demoLink.style.display = 'none';
+  document.getElementById('modal-full-desc').textContent = proj.full_description || proj.short_description || '';
+  
+  const techContainer = document.getElementById('modal-tech-stack');
+  if (techContainer) {
+    techContainer.innerHTML = (proj.technologies || []).map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('');
+  }
+
+  document.getElementById('modal-problem').textContent = proj.problem_statement || 'N/A';
+  document.getElementById('modal-objective').textContent = proj.objective || 'N/A';
+  document.getElementById('modal-dataset').textContent = proj.dataset || 'N/A';
+  document.getElementById('modal-methodology').textContent = proj.methodology || 'N/A';
+  document.getElementById('modal-findings').textContent = proj.key_findings || 'N/A';
+  document.getElementById('modal-impact').textContent = proj.business_impact || 'N/A';
+
+  const ghBtn = document.getElementById('modal-github-link');
+  if (ghBtn) {
+    if (proj.github_url) {
+      ghBtn.href = proj.github_url;
+      ghBtn.style.display = 'inline-flex';
+    } else {
+      ghBtn.style.display = 'none';
+    }
+  }
+
+  const demoBtn = document.getElementById('modal-demo-link');
+  if (demoBtn) {
+    if (proj.live_demo_url) {
+      demoBtn.href = proj.live_demo_url;
+      demoBtn.style.display = 'inline-flex';
+    } else {
+      demoBtn.style.display = 'none';
+    }
   }
 
   modal.classList.add('active');
@@ -347,9 +702,17 @@ function openProjectModal(p) {
 
 function closeProjectModal() {
   const modal = document.getElementById('project-modal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function switchModalMainImage(src, thumbEl) {
+  const mainImg = document.getElementById('modal-main-img');
+  if (mainImg) mainImg.src = src;
+  const parent = thumbEl.parentElement;
+  if (parent) {
+    parent.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumbEl.classList.add('active');
   }
 }
 
@@ -357,24 +720,27 @@ function renderSkills(skills) {
   const container = document.getElementById('skills-grid');
   if (!container) return;
 
-  const groups = {};
-  (skills || []).forEach(s => {
-    const cat = s.category || 'General Analytics';
-    if (!groups[cat]) groups[cat] = [];
-    groups[cat].push(s);
+  if (!skills || skills.length === 0) {
+    container.innerHTML = `<div style="grid-column: 1/-1; color: var(--text-muted);">No skills listed.</div>`;
+    return;
+  }
+
+  // Group by category
+  const grouped = {};
+  skills.forEach(s => {
+    const cat = s.category || 'General Tools';
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(s);
   });
 
-  container.innerHTML = Object.entries(groups).map(([cat, items]) => `
-    <div class="skill-group-card">
-      <h3 class="skill-group-title">
-        <i data-lucide="layers" style="width:16px;height:16px;color:#38bdf8;"></i>
-        <span>${escapeHtml(cat)}</span>
-      </h3>
-      <div class="skill-items-list">
-        ${items.map(sk => `
+  container.innerHTML = Object.entries(grouped).map(([category, items]) => `
+    <div class="skill-category-card">
+      <h4 class="skill-cat-title">${escapeHtml(category)}</h4>
+      <div class="skill-tags-list">
+        ${items.map(item => `
           <div class="skill-item">
-            <span class="skill-name">${escapeHtml(sk.name)}</span>
-            <span class="skill-badge">${escapeHtml(sk.level || 'Advanced')}</span>
+            <span class="skill-name">${escapeHtml(item.name)}</span>
+            <span class="skill-level">${escapeHtml(item.level || 'Proficient')}</span>
           </div>
         `).join('')}
       </div>
@@ -386,28 +752,31 @@ function renderExperience(experience) {
   const container = document.getElementById('experience-timeline');
   if (!container) return;
 
-  container.innerHTML = (experience || []).map(e => `
+  if (!experience || experience.length === 0) {
+    container.innerHTML = `<div style="color: var(--text-muted);">No experience listed.</div>`;
+    return;
+  }
+
+  container.innerHTML = experience.map(exp => `
     <div class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-card">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
         <div class="timeline-header">
           <div>
-            <h3 class="timeline-role">${escapeHtml(e.role)}</h3>
-            <span class="timeline-company">${escapeHtml(e.company)} • ${escapeHtml(e.location || '')}</span>
+            <h4 class="timeline-role">${escapeHtml(exp.role)}</h4>
+            <div class="timeline-company">${escapeHtml(exp.company)} • <span style="font-weight:400;color:var(--text-muted);">${escapeHtml(exp.location || 'India')}</span></div>
           </div>
-          <span class="timeline-date">${escapeHtml(e.start_date || '')} — ${e.current ? 'Present' : escapeHtml(e.end_date || '')}</span>
+          <span class="timeline-date">${escapeHtml(exp.start_date || '')} – ${exp.current ? 'Present' : escapeHtml(exp.end_date || '')}</span>
         </div>
-        <p class="timeline-desc">${escapeHtml(e.description || '')}</p>
-        
-        ${(e.responsibilities && e.responsibilities.length > 0) ? `
+        <p class="timeline-desc">${escapeHtml(exp.description || '')}</p>
+        ${exp.responsibilities && exp.responsibilities.length > 0 ? `
           <ul class="timeline-bullets">
-            ${e.responsibilities.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+            ${exp.responsibilities.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
           </ul>
         ` : ''}
-
-        ${(e.technologies && e.technologies.length > 0) ? `
-          <div class="project-tech-tags" style="margin-bottom:0;">
-            ${e.technologies.map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('')}
+        ${exp.technologies && exp.technologies.length > 0 ? `
+          <div class="timeline-tech-stack">
+            ${exp.technologies.map(t => `<span class="tech-pill">${escapeHtml(t)}</span>`).join('')}
           </div>
         ` : ''}
       </div>
@@ -422,7 +791,7 @@ function renderCredentials(education, certifications) {
   let certHtml = (certifications || []).map(c => `
     <div class="cert-card">
       <div class="cert-badge-wrap">
-        <img src="${escapeHtml(c.image_url || 'assets/badge-microsoft.svg')}" alt="Badge" class="cert-badge-img">
+        <i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i>
       </div>
       <div class="cert-info">
         <h4 class="cert-title">${escapeHtml(c.title)}</h4>
