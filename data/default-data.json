@@ -225,7 +225,7 @@
   "experience": [
     {
       "id": "exp-1",
-      "role": "Data & Product Analytics Intern",
+      "role": "Data  Analytics Intern",
       "company": "DigitalEdify",
       "location": "India",
       "start_date": "Jul 2025",
@@ -261,7 +261,7 @@
       "order": 2,
       "visible": true
     },
-    {
+   {
       "id": "exp-3",
       "role": "Network Analyst (AICTE Cisco Virtual Internship)",
       "company": "Cisco / AICTE",
