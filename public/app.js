@@ -365,15 +365,39 @@ async function initPortfolio() {
     try {
       const parsed = JSON.parse(cached);
       if (parsed && parsed.profile && parsed.profile.name === "Purna Satya Kumar Raavi") {
+        const rawProjects = (parsed.projects && parsed.projects.length > 0) 
+          ? parsed.projects.filter(p => p.published !== false) 
+          : AUTHENTIC_MASTER_DATA.projects;
+          
+        const rawSkills = (parsed.skills && parsed.skills.length > 0) 
+          ? parsed.skills 
+          : AUTHENTIC_MASTER_DATA.skills;
+          
+        const rawExperience = (parsed.experience && parsed.experience.length > 0) 
+          ? parsed.experience 
+          : AUTHENTIC_MASTER_DATA.experience;
+          
+        const rawEducation = (parsed.education && parsed.education.length > 0) 
+          ? parsed.education 
+          : AUTHENTIC_MASTER_DATA.education;
+          
+        const rawCerts = (parsed.certifications && parsed.certifications.length > 0) 
+          ? parsed.certifications 
+          : AUTHENTIC_MASTER_DATA.certifications;
+          
+        const rawPubs = (parsed.publications && parsed.publications.length > 0) 
+          ? parsed.publications 
+          : AUTHENTIC_MASTER_DATA.publications;
+
         portfolioData = {
           profile: parsed.profile,
-          projects: (parsed.projects || []).filter(p => p.published),
-          skills: parsed.skills || [],
-          experience: parsed.experience || [],
-          education: parsed.education || [],
-          certifications: parsed.certifications || [],
-          publications: parsed.publications || [],
-          social_links: parsed.social_links || [],
+          projects: rawProjects,
+          skills: rawSkills,
+          experience: rawExperience,
+          education: rawEducation,
+          certifications: rawCerts,
+          publications: rawPubs,
+          social_links: parsed.social_links || AUTHENTIC_MASTER_DATA.social_links,
           resume: parsed.resume || AUTHENTIC_MASTER_DATA.resume,
           categories: parsed.site_settings?.categories || AUTHENTIC_MASTER_DATA.categories
         };
