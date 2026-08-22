@@ -95,6 +95,7 @@
         <a class="admin-nav-item" data-view="view-experience"><i data-lucide="briefcase" style="width:16px;height:16px;"></i><span>Experience</span></a>
         <a class="admin-nav-item" data-view="view-education"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i><span>Education</span></a>
         <a class="admin-nav-item" data-view="view-certifications"><i data-lucide="award" style="width:16px;height:16px;"></i><span>Certifications</span></a>
+        <a class="admin-nav-item" data-view="view-publications"><i data-lucide="book-open" style="width:16px;height:16px;"></i><span>Publications</span></a>
         <a class="admin-nav-item" data-view="view-resume"><i data-lucide="file-check" style="width:16px;height:16px;"></i><span>Resume Manager</span></a>
         <a class="admin-nav-item" data-view="view-settings"><i data-lucide="settings" style="width:16px;height:16px;"></i><span>Settings &amp; Sync</span></a>
       </nav>
@@ -225,6 +226,15 @@
             <button class="btn btn-primary btn-sm" onclick="openCertificationModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Certification</span></button>
           </div>
           <div id="admin-certifications-list"></div>
+        </section>
+
+        <!-- Publications -->
+        <section class="admin-view" id="view-publications">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h3 style="font-size:18px;font-weight:700;">Research Papers &amp; Publications</h3>
+            <button class="btn btn-primary btn-sm" onclick="openPublicationModal()"><i data-lucide="plus" style="width:14px;height:14px;"></i><span>Add Publication</span></button>
+          </div>
+          <div id="admin-publications-list"></div>
         </section>
 
         <!-- Resume -->
