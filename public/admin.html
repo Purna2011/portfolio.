@@ -285,10 +285,10 @@
   </div>
 
   <!-- PROJECT EDITOR MODAL -->
-  <div class="modal-backdrop" id="project-editor-modal">
+  <div class="modal-backdrop" id="project-modal">
     <div class="modal-box" style="max-width:960px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="project-modal-heading">+ Add New Project</h3>
+        <h3 class="modal-title" id="proj-modal-title">+ Add New Project</h3>
         <button class="modal-close" onclick="closeProjectEditor()"><i data-lucide="x"></i></button>
       </div>
       <form id="project-form" class="modal-body">
@@ -328,12 +328,11 @@
             <div style="font-size:11px;color:var(--text-muted);">Multiple screenshots supported</div>
             <input type="file" id="proj-image-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display:none;" multiple>
           </div>
-          <div class="screenshot-preview-list" id="proj-screenshot-previews"></div>
+          <div class="screenshot-preview-list" id="screenshot-previews-container"></div>
         </div>
         <div class="form-group"><label class="form-label">Version Change Note</label><input type="text" id="proj-form-change-note" name="change_note" placeholder="e.g. Added ARR impact metrics and updated schema screenshot"></div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border-subtle);flex-wrap:wrap;gap:12px;">
-          <button type="button" class="btn btn-secondary" onclick="previewCurrentProjectModal()"><i data-lucide="eye" style="width:14px;height:14px;"></i><span>Preview Live Project Card</span></button>
-          <div style="display:flex;gap:12px;">
+          <div style="display:flex;gap:12px;margin-left:auto;">
             <button type="button" class="btn btn-secondary" onclick="closeProjectEditor()">Cancel</button>
             <button type="submit" class="btn btn-primary btn-lg" id="proj-submit-btn"><i data-lucide="check" style="width:16px;height:16px;"></i><span>Save &amp; Publish Project</span></button>
           </div>
