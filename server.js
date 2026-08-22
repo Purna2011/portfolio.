@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -365,27 +365,35 @@ const server = http.createServer(async (req, res) => {
         }
 
         const safeFilename = Date.now() + '-' + body.filename.replace(/[^a-zA-Z0-9._-]/g, '_');
-        const uploadDir = path.join(__dirname, 'uploads');
-        if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+        let fileUrl = body.data; // Fallback to Data URL for serverless/Vercel environments
+        let sizeKb = Math.round((body.data.length * 0.75) / 1024);
 
-        const targetPath = path.join(uploadDir, safeFilename);
+        try {
+          const uploadDir = path.join(__dirname, 'uploads');
+          if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
-        // Strip data:image/png;base64, or data:application/pdf;base64, if present
-        let base64Data = body.data;
-        if (base64Data.includes(';base64,')) {
-          base64Data = base64Data.split(';base64,')[1];
+          const targetPath = path.join(uploadDir, safeFilename);
+
+          let base64Data = body.data;
+          if (base64Data.includes(';base64,')) {
+            base64Data = base64Data.split(';base64,')[1];
+          }
+
+          const buffer = Buffer.from(base64Data, 'base64');
+          fs.writeFileSync(targetPath, buffer);
+          fileUrl = `/uploads/${safeFilename}`;
+          sizeKb = Math.round(buffer.length / 1024);
+        } catch (fsErr) {
+          console.warn('[Upload] Disk write unavailable (serverless environment), utilizing data URL directly:', fsErr.message);
+          fileUrl = body.data;
         }
 
-        const buffer = Buffer.from(base64Data, 'base64');
-        fs.writeFileSync(targetPath, buffer);
-
-        const fileUrl = `/uploads/${safeFilename}`;
         return sendJson(res, 200, {
           success: true,
-          message: 'File uploaded successfully',
+          message: 'File processed successfully',
           file_url: fileUrl,
           filename: safeFilename,
-          size_kb: Math.round(buffer.length / 1024)
+          size_kb: sizeKb
         });
       }
     }
