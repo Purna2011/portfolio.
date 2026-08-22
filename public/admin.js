@@ -462,6 +462,7 @@ function switchAdminView(viewId) {
     'view-experience': 'Work Experience',
     'view-education': 'Academic Education',
     'view-certifications': 'Certifications & Credentials',
+    'view-publications': 'Research & Publications',
     'view-resume': 'Resume Manager',
     'view-settings': 'Site Settings & Cloud Sync'
   };
@@ -481,6 +482,7 @@ function renderAllViews() {
   renderExperienceList(adminData.experience);
   renderEducationList(adminData.education);
   renderCertificationsList(adminData.certifications);
+  renderPublicationsList(adminData.publications);
   renderResumeView(adminData.resume);
   renderSettingsForm(adminData.site_settings);
   if (window.lucide) lucide.createIcons();
@@ -1006,6 +1008,101 @@ async function deleteCertification(id) {
   showToast('✓ Certification deleted', 'success');
 
   try { await fetch(`/api/admin/certifications/${id}`, { method: 'DELETE' }); } catch (err) {}
+}
+
+// Publications List & CRUD
+function renderPublicationsList(pubs) {
+  const container = document.getElementById('admin-publications-list');
+  if (!container) return;
+
+  if (!pubs || pubs.length === 0) {
+    container.innerHTML = `<div style="padding:20px;color:var(--text-muted);text-align:center;">No publications added yet. Click "+ Add Publication" to add one.</div>`;
+    return;
+  }
+
+  container.innerHTML = pubs.map(pub => `
+    <div class="admin-item-card">
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <strong style="font-size:14px;color:var(--text-primary);">${escapeHtml(pub.title)}</strong>
+          <span style="background:#F0FDF4;color:#15803D;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:700;">${escapeHtml(pub.status || 'Accepted')}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-secondary);">Conference: ${escapeHtml(pub.conference)}</div>
+        ${pub.description ? `<p style="font-size:12px;color:var(--text-muted);margin-top:4px;">${escapeHtml(pub.description)}</p>` : ''}
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="openPublicationModal('${pub.id}')"><i data-lucide="edit" style="width:14px;height:14px;"></i><span>Edit</span></button>
+        <button class="btn btn-danger btn-sm" onclick="deletePublication('${pub.id}')"><i data-lucide="trash-2" style="width:14px;height:14px;"></i></button>
+      </div>
+    </div>
+  `).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function openPublicationModal(editId = null) {
+  const form = document.getElementById('generic-item-form');
+  const existing = editId ? (adminData.publications || []).find(p => p.id === editId) : null;
+  document.getElementById('generic-modal-title').textContent = existing ? 'Edit Publication' : 'Add Research Publication';
+
+  form.innerHTML = `
+    <div class="form-group"><label class="form-label">Paper / Research Title *</label><input type="text" name="title" required value="${existing ? escapeHtml(existing.title) : ''}" placeholder="RetinaGuardX: A Hybrid Model with Grad-CAM for Retinal Disease Detection"></div>
+    <div class="form-grid-2">
+      <div class="form-group"><label class="form-label">Conference / Journal *</label><input type="text" name="conference" required value="${existing ? escapeHtml(existing.conference) : ''}" placeholder="ICICDS-2025"></div>
+      <div class="form-group"><label class="form-label">Status</label><input type="text" name="status" value="${existing ? escapeHtml(existing.status || 'Accepted') : 'Accepted'}" placeholder="Accepted / Published"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Summary / Abstract Description</label><textarea name="description" rows="3" placeholder="Brief summary of the research methodology and key findings...">${existing ? escapeHtml(existing.description || '') : ''}</textarea></div>
+    <div class="form-group"><label class="form-label">Paper / DOI Link (optional)</label><input type="url" name="link" value="${existing ? escapeHtml(existing.link || '') : ''}" placeholder="https://doi.org/..."></div>
+    <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:16px;">
+      <button type="button" class="btn btn-secondary" onclick="closeGenericModal()">Cancel</button>
+      <button type="submit" class="btn btn-primary">${existing ? 'Update Publication' : 'Save Publication'}</button>
+    </div>
+  `;
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      id: existing ? existing.id : ('pub-' + Date.now()),
+      title: form.title.value,
+      conference: form.conference.value,
+      status: form.status.value,
+      description: form.description.value,
+      link: form.link.value
+    };
+
+    adminData.publications = adminData.publications || [];
+    if (existing) {
+      const idx = adminData.publications.findIndex(p => p.id === existing.id);
+      if (idx !== -1) adminData.publications[idx] = payload;
+    } else {
+      adminData.publications.push(payload);
+    }
+
+    syncLiveStateLocally();
+    renderPublicationsList(adminData.publications);
+    closeGenericModal();
+    showToast(existing ? '✓ Publication updated' : '✓ Publication added', 'success');
+
+    try {
+      await fetch('/api/admin/publications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(adminData.publications)
+      });
+    } catch (err) {}
+  };
+
+  document.getElementById('generic-item-modal').classList.add('active');
+  if (window.lucide) lucide.createIcons();
+}
+
+async function deletePublication(id) {
+  if (!confirm('Delete this publication?')) return;
+  adminData.publications = (adminData.publications || []).filter(p => p.id !== id);
+  syncLiveStateLocally();
+  renderPublicationsList(adminData.publications);
+  showToast('✓ Publication deleted', 'success');
+
+  try { await fetch(`/api/admin/publications/${id}`, { method: 'DELETE' }); } catch (err) {}
 }
 
 function renderResumeView(resume) {
