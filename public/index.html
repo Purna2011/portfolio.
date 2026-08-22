@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">Purna Satya Kumar Raavi | Data & Product Analyst</title>
-  <meta name="description" content="Portfolio of Purna Satya Kumar Raavi — Data & Product Analyst specializing in SQL, Python, Power BI, Tableau, ETL pipelines, and business intelligence.">
+  <title id="page-title">Purna Satya Kumar Raavi | Data &amp; Product Analyst</title>
+  <meta name="description" content="Portfolio of Purna Satya Kumar Raavi — Data &amp; Product Analyst specializing in SQL, Python, Power BI, Tableau, ETL pipelines, and business intelligence.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
           </div>
 
           <h1 class="hero-title" id="hero-name-title">
-            Turning Data Into Clear, Actionable Insights.
+            Turning Data Into Clear,<br><span class="gradient-text">Actionable Insights.</span>
           </h1>
 
           <p class="hero-headline" id="hero-headline">
@@ -93,10 +93,20 @@
 
         <div class="hero-visual">
           <div class="avatar-card">
-            <img id="hero-avatar-img" src="assets/avatar.svg" alt="Purna Satya Kumar Raavi" class="avatar-img">
-            <div class="avatar-float-tag">
-              <i data-lucide="bar-chart-3" style="width:16px;height:16px;color:#38bdf8;"></i>
-              <span id="hero-location-tag">Andhra Pradesh, IN</span>
+            <div class="avatar-inner">
+              <div class="avatar-graphic">
+                <div class="avatar-initials-badge">RP</div>
+                <div class="avatar-chart-mock">
+                  <div class="mock-bar b1"></div>
+                  <div class="mock-bar b2"></div>
+                  <div class="mock-bar b3"></div>
+                  <div class="mock-bar b4"></div>
+                </div>
+              </div>
+              <div class="avatar-label">
+                <span class="live-dot"></span>
+                <span>Verified Analytics Portfolio</span>
+              </div>
             </div>
           </div>
         </div>
@@ -125,7 +135,7 @@
                 <i data-lucide="database" class="pillar-icon" style="width:18px;height:18px;"></i>
                 <span>SQL &amp; Multi-Table Querying</span>
               </div>
-              <p class="pillar-desc">CTEs, Window Functions, JOINs, and aggregations across relational databases (MySQL, SQL Server, T-SQL).</p>
+              <p class="pillar-desc">CTEs, Window Functions, JOINs, and aggregations across relational databases (MySQL, PostgreSQL, T-SQL).</p>
             </div>
 
             <div class="pillar-card">
@@ -160,11 +170,178 @@
         <!-- Filter Tabs -->
         <div class="filter-tabs" id="project-filter-tabs">
           <button class="filter-tab active" data-category="All">All Projects</button>
+          <button class="filter-tab" data-category="Power BI &amp; Business Intelligence">Power BI &amp; Business Intelligence</button>
+          <button class="filter-tab" data-category="SQL &amp; Business Intelligence">SQL &amp; Business Intelligence</button>
+          <button class="filter-tab" data-category="Power BI &amp; Analytics">Power BI &amp; Analytics</button>
+          <button class="filter-tab" data-category="Python &amp; Data Analysis">Python &amp; Data Analysis</button>
+          <button class="filter-tab" data-category="Machine Learning &amp; AI">Machine Learning &amp; AI</button>
         </div>
 
         <!-- Projects Grid -->
         <div class="projects-grid" id="projects-grid">
-          <!-- Dynamically populated -->
+          <!-- Project 1: Insight360 -->
+          <article class="project-card" data-id="proj-1">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-1')">
+              <img src="assets/project-powerbi-1.svg" alt="Insight360" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">Power BI &amp; Business Intelligence</span>
+              <span class="project-featured-tag">★ Featured</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-1')">Insight360 — Enterprise Analytics for Customer Retention, Service Excellence &amp; Workforce Inclusion</h3>
+              <p class="project-card-desc">A multi-dashboard Power BI project exploring customer service, customer churn and retention, and workforce diversity across 3 business areas.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Power BI</span>
+                <span class="tech-pill">DAX</span>
+                <span class="tech-pill">Data Modeling</span>
+                <span class="tech-pill">Excel</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-1')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/Purna2011/Insight360-Enterprise-Analytics-for-Customer-Retention-Service-Excellence-Workforce-Inclusion" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: SQL Business Insights -->
+          <article class="project-card" data-id="proj-2">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-2')">
+              <img src="assets/project-sql-1.svg" alt="SQL Business Insights" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">SQL &amp; Business Intelligence</span>
+              <span class="project-featured-tag">★ Featured</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-2')">SQL Business Insights &amp; Analytical Queries</h3>
+              <p class="project-card-desc">A practical SQL analytics project answering real business questions using advanced joins, aggregations, window functions, and CTEs.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">SQL</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">PostgreSQL</span>
+                <span class="tech-pill">Window Functions</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-2')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/purnaravi26/sql-business-analysis" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: T20 Cricket -->
+          <article class="project-card" data-id="proj-3">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-3')">
+              <img src="assets/project-cricket-1.svg" alt="T20 Cricket Analysis" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">Power BI &amp; Analytics</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-3')">T20 Cricket Batsmen Performance Analysis</h3>
+              <p class="project-card-desc">Power BI dashboard analyzing batsman strike rates, averages, boundaries, and situational performance benchmarks.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Power BI</span>
+                <span class="tech-pill">DAX</span>
+                <span class="tech-pill">Data Modeling</span>
+                <span class="tech-pill">Excel</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-3')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/purnaravi26" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Supermarket Sales -->
+          <article class="project-card" data-id="proj-4">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-4')">
+              <img src="assets/project-product-1.svg" alt="Supermarket Sales Analysis" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">Python &amp; Data Analysis</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-4')">Supermarket Sales Analysis</h3>
+              <p class="project-card-desc">Exploratory data analysis of retail transactions across product lines, payment modes, and customer ratings.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Pandas</span>
+                <span class="tech-pill">Matplotlib</span>
+                <span class="tech-pill">Seaborn</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-4')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/purnaravi26" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Traffic Sign Detection -->
+          <article class="project-card" data-id="proj-5">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-5')">
+              <img src="assets/project-sql-2.svg" alt="Traffic Sign Detection" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">Machine Learning &amp; AI</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-5')">Traffic Sign Detection</h3>
+              <p class="project-card-desc">Computer vision and deep learning project classifying traffic signs to support intelligent transportation systems.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">TensorFlow</span>
+                <span class="tech-pill">OpenCV</span>
+                <span class="tech-pill">CNN</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-5')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/purnaravi26" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Bike Sharing Demand -->
+          <article class="project-card" data-id="proj-6">
+            <div class="project-card-img-wrap" onclick="openProjectModal('proj-6')">
+              <img src="assets/project-powerbi-2.svg" alt="Bike Sharing Demand Prediction" class="project-card-img" loading="lazy">
+              <span class="project-category-tag">Machine Learning &amp; AI</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title" onclick="openProjectModal('proj-6')">Bike Sharing Demand Prediction</h3>
+              <p class="project-card-desc">Regression modeling to forecast hourly bike rental demand using weather, seasonal, and temporal variables.</p>
+              <div class="project-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Scikit-Learn</span>
+                <span class="tech-pill">Regression</span>
+                <span class="tech-pill">Pandas</span>
+              </div>
+              <div class="project-card-footer">
+                <button class="btn btn-secondary btn-sm" onclick="openProjectModal('proj-6')">
+                  <span>View Case Study</span>
+                  <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+                </button>
+                <div class="project-links-group">
+                  <a href="https://github.com/purnaravi26" target="_blank" class="icon-link" title="GitHub"><i data-lucide="github" style="width:16px;height:16px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -179,7 +356,53 @@
         </div>
 
         <div class="skills-grid" id="skills-grid">
-          <!-- Dynamically populated -->
+          <!-- Skill Group 1 -->
+          <div class="skill-category-card">
+            <h4 class="skill-cat-title">Data Querying &amp; Databases</h4>
+            <div class="skill-tags-list">
+              <div class="skill-item"><span class="skill-name">SQL (CTEs, Window Functions, Joins, Aggregations)</span><span class="skill-level">Advanced</span></div>
+              <div class="skill-item"><span class="skill-name">MySQL &amp; PostgreSQL</span><span class="skill-level">Advanced</span></div>
+            </div>
+          </div>
+
+          <!-- Skill Group 2 -->
+          <div class="skill-category-card">
+            <h4 class="skill-cat-title">Business Intelligence &amp; Visualization</h4>
+            <div class="skill-tags-list">
+              <div class="skill-item"><span class="skill-name">Power BI (DAX, Data Modeling, Star Schema)</span><span class="skill-level">Advanced</span></div>
+              <div class="skill-item"><span class="skill-name">Tableau &amp; Interactive Dashboards</span><span class="skill-level">Proficient</span></div>
+              <div class="skill-item"><span class="skill-name">KPI Reporting &amp; Business Performance Metrics</span><span class="skill-level">Advanced</span></div>
+            </div>
+          </div>
+
+          <!-- Skill Group 3 -->
+          <div class="skill-category-card">
+            <h4 class="skill-cat-title">Programming &amp; Analytics</h4>
+            <div class="skill-tags-list">
+              <div class="skill-item"><span class="skill-name">Python (Pandas, NumPy, Matplotlib, Seaborn)</span><span class="skill-level">Advanced</span></div>
+              <div class="skill-item"><span class="skill-name">Exploratory Data Analysis (EDA) &amp; Data Cleaning</span><span class="skill-level">Advanced</span></div>
+              <div class="skill-item"><span class="skill-name">ETL Pipelines &amp; Automated Scripts</span><span class="skill-level">Proficient</span></div>
+            </div>
+          </div>
+
+          <!-- Skill Group 4 -->
+          <div class="skill-category-card">
+            <h4 class="skill-cat-title">Product &amp; Business Strategy</h4>
+            <div class="skill-tags-list">
+              <div class="skill-item"><span class="skill-name">Product Analytics &amp; Funnel Analysis</span><span class="skill-level">Proficient</span></div>
+              <div class="skill-item"><span class="skill-name">Customer Retention &amp; Churn Analysis</span><span class="skill-level">Proficient</span></div>
+            </div>
+          </div>
+
+          <!-- Skill Group 5 -->
+          <div class="skill-category-card">
+            <h4 class="skill-cat-title">Tools &amp; Frameworks</h4>
+            <div class="skill-tags-list">
+              <div class="skill-item"><span class="skill-name">Advanced Excel (Pivot Tables, Power Query, Formulas)</span><span class="skill-level">Advanced</span></div>
+              <div class="skill-item"><span class="skill-name">Git &amp; GitHub Version Control</span><span class="skill-level">Proficient</span></div>
+              <div class="skill-item"><span class="skill-name">Machine Learning &amp; AI Foundations</span><span class="skill-level">Proficient</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -194,7 +417,106 @@
         </div>
 
         <div class="timeline" id="experience-timeline">
-          <!-- Dynamically populated -->
+          <!-- Exp 1: DigitalEdify -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h4 class="timeline-role">Data &amp; Product Analytics Intern</h4>
+                  <div class="timeline-company">DigitalEdify • <span style="font-weight:400;color:var(--text-muted);">India</span></div>
+                </div>
+                <span class="timeline-date">Jul 2025 – Feb 2026</span>
+              </div>
+              <p class="timeline-desc">Worked with SQL, Excel, Power BI, and ETL pipelines to analyze operational records, support business analysis, and build automated KPI reporting.</p>
+              <ul class="timeline-bullets">
+                <li>Analyzed 1M+ operational records for business and product-related analysis.</li>
+                <li>Worked on data governance and data-quality checks, helping reduce discrepancies and fraud risks by 30%.</li>
+                <li>Built automated reporting workflows and Power BI dashboards, improving visibility for business decisions by 35%.</li>
+              </ul>
+              <div class="timeline-tech-stack">
+                <span class="tech-pill">SQL</span>
+                <span class="tech-pill">Excel</span>
+                <span class="tech-pill">Power BI</span>
+                <span class="tech-pill">ETL Pipelines</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exp 2: Fox Trading Solutions -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h4 class="timeline-role">Data &amp; Risk Analytics Intern</h4>
+                  <div class="timeline-company">Fox Trading Solutions – 1Stop.ai • <span style="font-weight:400;color:var(--text-muted);">India</span></div>
+                </div>
+                <span class="timeline-date">Apr 2025 – May 2025</span>
+              </div>
+              <p class="timeline-desc">Explored risk analytics, data cleaning, and statistical patterns to assist data-driven operational decisions.</p>
+              <ul class="timeline-bullets">
+                <li>Analyzed risk patterns and transactional datasets using Python and SQL.</li>
+                <li>Supported analytical workflows and reporting dashboards to assist decision-making.</li>
+                <li>Delivered actionable findings on data patterns to support operational resource allocation.</li>
+              </ul>
+              <div class="timeline-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">SQL</span>
+                <span class="tech-pill">Excel</span>
+                <span class="tech-pill">Risk Analytics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exp 3: AICTE Cisco -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h4 class="timeline-role">Network Analyst (Virtual Internship)</h4>
+                  <div class="timeline-company">AICTE Cisco Virtual Internship • <span style="font-weight:400;color:var(--text-muted);">Virtual</span></div>
+                </div>
+                <span class="timeline-date">Sep 2023 – Nov 2023</span>
+              </div>
+              <p class="timeline-desc">Gained foundational experience in network analysis, protocols, and data infrastructure monitoring.</p>
+              <ul class="timeline-bullets">
+                <li>Monitored network topology and traffic flows using Cisco Packet Tracer.</li>
+                <li>Analyzed network logs and diagnostic metrics to identify latency bottlenecks.</li>
+              </ul>
+              <div class="timeline-tech-stack">
+                <span class="tech-pill">Networking</span>
+                <span class="tech-pill">Cisco Packet Tracer</span>
+                <span class="tech-pill">Network Analytics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exp 4: L&T IoT -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <div>
+                  <h4 class="timeline-role">IoT &amp; Computer Vision Project Intern</h4>
+                  <div class="timeline-company">L&amp;T IoT Internship • <span style="font-weight:400;color:var(--text-muted);">India</span></div>
+                </div>
+                <span class="timeline-date">2023 – 2023</span>
+              </div>
+              <p class="timeline-desc">Built an eye-controlled interface project utilizing Python and OpenCV for assistive device interaction.</p>
+              <ul class="timeline-bullets">
+                <li>Developed computer vision algorithms for real-time eye gaze tracking using OpenCV.</li>
+                <li>Integrated sensor outputs with hardware controllers for hands-free device control.</li>
+              </ul>
+              <div class="timeline-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">OpenCV</span>
+                <span class="tech-pill">IoT</span>
+                <span class="tech-pill">Computer Vision</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -209,7 +531,102 @@
         </div>
 
         <div class="credentials-grid" id="credentials-grid">
-          <!-- Dynamically populated -->
+          <!-- Cert 1 -->
+          <div class="cert-card">
+            <div class="cert-badge-wrap"><i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i></div>
+            <div class="cert-info">
+              <h4 class="cert-title">Data Analytics &amp; Visualization Job Simulation</h4>
+              <div class="cert-issuer">Accenture (Forage)</div>
+              <div class="cert-meta"><span>Verified</span></div>
+            </div>
+          </div>
+
+          <!-- Cert 2 -->
+          <div class="cert-card">
+            <div class="cert-badge-wrap"><i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i></div>
+            <div class="cert-info">
+              <h4 class="cert-title">Power BI Job Simulation</h4>
+              <div class="cert-issuer">PwC Switzerland (Forage)</div>
+              <div class="cert-meta"><span>Verified</span></div>
+            </div>
+          </div>
+
+          <!-- Cert 3 -->
+          <div class="cert-card">
+            <div class="cert-badge-wrap"><i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i></div>
+            <div class="cert-info">
+              <h4 class="cert-title">Data Visualization: Empowering Business with Effective Insights</h4>
+              <div class="cert-issuer">Tata (Forage)</div>
+              <div class="cert-meta"><span>Verified</span></div>
+            </div>
+          </div>
+
+          <!-- Cert 4 -->
+          <div class="cert-card">
+            <div class="cert-badge-wrap"><i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i></div>
+            <div class="cert-info">
+              <h4 class="cert-title">Python for Data Science</h4>
+              <div class="cert-issuer">IBM</div>
+              <div class="cert-meta"><span>Verified</span></div>
+            </div>
+          </div>
+
+          <!-- Cert 5 -->
+          <div class="cert-card">
+            <div class="cert-badge-wrap"><i data-lucide="award" style="width:24px;height:24px;color:var(--accent-amber);"></i></div>
+            <div class="cert-info">
+              <h4 class="cert-title">Data Science Orientation</h4>
+              <div class="cert-issuer">IBM</div>
+              <div class="cert-meta"><span>Verified</span></div>
+            </div>
+          </div>
+
+          <!-- Education 1 -->
+          <div class="cert-card" style="border-left: 3px solid var(--accent-indigo);">
+            <div class="cert-badge-wrap" style="background:var(--accent-indigo-subtle);border-color:rgba(99,102,241,0.3);">
+              <i data-lucide="graduation-cap" style="width:24px;height:24px;color:#a5b4fc;"></i>
+            </div>
+            <div class="cert-info">
+              <h4 class="cert-title">B.Tech in Computer Science and Engineering (Artificial Intelligence &amp; Machine Learning)</h4>
+              <div class="cert-issuer">Lakireddy Bali Reddy College of Engineering • Mylavaram, Andhra Pradesh, India</div>
+              <div class="cert-meta">
+                <span>2021 - 2025</span>
+                <span style="color:#34d399;font-weight:600;margin-left:8px;">CGPA: 7.49 / 10</span>
+              </div>
+              <p style="font-size:12px;color:#94a3b8;margin-top:6px;">Specialized coursework: Database Management Systems (DBMS), Data Structures &amp; Algorithms, Machine Learning, Deep Learning, Python Programming, Probability &amp; Statistics.</p>
+            </div>
+          </div>
+
+          <!-- Education 2 -->
+          <div class="cert-card" style="border-left: 3px solid var(--accent-indigo);">
+            <div class="cert-badge-wrap" style="background:var(--accent-indigo-subtle);border-color:rgba(99,102,241,0.3);">
+              <i data-lucide="graduation-cap" style="width:24px;height:24px;color:#a5b4fc;"></i>
+            </div>
+            <div class="cert-info">
+              <h4 class="cert-title">Intermediate (MPC)</h4>
+              <div class="cert-issuer">Sri Nidhi Junior College • Andhra Pradesh, India</div>
+              <div class="cert-meta">
+                <span>2019 - 2021</span>
+                <span style="color:#34d399;font-weight:600;margin-left:8px;">Percentage: 83.4%</span>
+              </div>
+              <p style="font-size:12px;color:#94a3b8;margin-top:6px;">Mathematics, Physics, Chemistry.</p>
+            </div>
+          </div>
+
+          <!-- Education 3 -->
+          <div class="cert-card" style="border-left: 3px solid var(--accent-indigo);">
+            <div class="cert-badge-wrap" style="background:var(--accent-indigo-subtle);border-color:rgba(99,102,241,0.3);">
+              <i data-lucide="graduation-cap" style="width:24px;height:24px;color:#a5b4fc;"></i>
+            </div>
+            <div class="cert-info">
+              <h4 class="cert-title">Secondary School Certificate (SSC)</h4>
+              <div class="cert-issuer">Dr. K.K.R. Gowtham Concept School • Andhra Pradesh, India</div>
+              <div class="cert-meta">
+                <span>2018 - 2019</span>
+                <span style="color:#34d399;font-weight:600;margin-left:8px;">CGPA: 8.2 / 10</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -224,7 +641,19 @@
         </div>
 
         <div class="credentials-grid" id="publications-grid">
-          <!-- Dynamically populated -->
+          <div class="cert-card" style="border-left: 3px solid var(--accent-teal);">
+            <div class="cert-badge-wrap" style="background:var(--accent-teal-subtle);border-color:rgba(20,184,166,0.3);">
+              <i data-lucide="book-open" style="width:24px;height:24px;color:var(--accent-teal);"></i>
+            </div>
+            <div class="cert-info">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;">
+                <h4 class="cert-title" style="font-size:15px;margin-bottom:0;">RetinaGuardX: A Hybrid Model with Grad-CAM for Retinal Disease Detection</h4>
+                <span style="background:var(--accent-emerald-subtle);color:#34d399;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;">Accepted</span>
+              </div>
+              <div class="cert-issuer" style="color:var(--accent-blue);font-weight:500;margin-top:2px;">Conference: ICICDS-2025</div>
+              <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6;">Research paper developing a hybrid deep learning model enhanced with Grad-CAM interpretability for high-accuracy retinal disease screening. Accepted for presentation at ICICDS-2025.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -241,9 +670,7 @@
         <div class="contact-grid">
           <div class="contact-cards">
             <div class="contact-info-card">
-              <div class="contact-icon">
-                <i data-lucide="mail"></i>
-              </div>
+              <div class="contact-icon"><i data-lucide="mail"></i></div>
               <div>
                 <div class="contact-card-title">Email</div>
                 <a href="mailto:purnaravi26@gmail.com" class="contact-card-val" id="contact-email">purnaravi26@gmail.com</a>
@@ -251,9 +678,7 @@
             </div>
 
             <div class="contact-info-card">
-              <div class="contact-icon">
-                <i data-lucide="phone"></i>
-              </div>
+              <div class="contact-icon"><i data-lucide="phone"></i></div>
               <div>
                 <div class="contact-card-title">Phone</div>
                 <div class="contact-card-val" id="contact-phone">+91 9390912936</div>
@@ -261,9 +686,7 @@
             </div>
 
             <div class="contact-info-card">
-              <div class="contact-icon">
-                <i data-lucide="map-pin"></i>
-              </div>
+              <div class="contact-icon"><i data-lucide="map-pin"></i></div>
               <div>
                 <div class="contact-card-title">Location</div>
                 <div class="contact-card-val" id="contact-location">Andhra Pradesh, India</div>
@@ -271,9 +694,7 @@
             </div>
 
             <div class="contact-info-card">
-              <div class="contact-icon">
-                <i data-lucide="linkedin"></i>
-              </div>
+              <div class="contact-icon"><i data-lucide="linkedin"></i></div>
               <div>
                 <div class="contact-card-title">LinkedIn</div>
                 <a href="https://linkedin.com/in/purnaravi26" target="_blank" class="contact-card-val" id="contact-linkedin">linkedin.com/in/purnaravi26</a>
@@ -281,9 +702,7 @@
             </div>
 
             <div class="contact-info-card">
-              <div class="contact-icon">
-                <i data-lucide="github"></i>
-              </div>
+              <div class="contact-icon"><i data-lucide="github"></i></div>
               <div>
                 <div class="contact-card-title">GitHub</div>
                 <a href="https://github.com/purnaravi26" target="_blank" class="contact-card-val" id="contact-github">github.com/purnaravi26</a>
@@ -295,12 +714,12 @@
           <form class="contact-form" id="public-contact-form">
             <div class="form-group">
               <label class="form-label" for="contact-name">Your Name</label>
-              <input type="text" id="contact-name" name="name" required placeholder="e.g. Sarah Jenkins">
+              <input type="text" id="contact-name" name="name" required placeholder="e.g. Hiring Manager">
             </div>
 
             <div class="form-group">
               <label class="form-label" for="contact-form-email">Your Email</label>
-              <input type="email" id="contact-form-email" name="email" required placeholder="sarah@company.com">
+              <input type="email" id="contact-form-email" name="email" required placeholder="recruiter@company.com">
             </div>
 
             <div class="form-group">
@@ -330,36 +749,25 @@
     </div>
   </footer>
 
-  <!-- Interactive Project Case Study Modal -->
+  <!-- CASE STUDY MODAL -->
   <div class="modal-backdrop" id="project-modal">
     <div class="modal-box">
       <div class="modal-header">
         <div>
-          <span class="project-category-tag" id="modal-category" style="position:static;display:inline-block;margin-bottom:6px;">Power BI</span>
-          <h3 class="modal-title" id="modal-title">Project Case Study Title</h3>
+          <span class="project-category-tag" id="modal-project-category" style="position:static;display:inline-block;margin-bottom:6px;">Power BI &amp; Business Intelligence</span>
+          <h2 class="modal-title" id="modal-project-title">Project Case Study</h2>
         </div>
-        <button class="modal-close" id="modal-close-btn" aria-label="Close modal">
-          <i data-lucide="x"></i>
-        </button>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
       </div>
-
+      
       <div class="modal-body">
-        <!-- Gallery -->
-        <div class="case-study-gallery">
-          <img id="modal-main-img" src="" alt="Project Screenshot" class="case-study-main-img">
-          <div class="case-study-thumbs" id="modal-thumbs"></div>
-        </div>
+        <img id="modal-main-img" src="assets/project-powerbi-1.svg" alt="Project Showcase" class="case-study-main-img">
+        <div class="gallery-thumbs" id="modal-gallery-thumbs" style="display:none;"></div>
+        
+        <p class="case-study-overview" id="modal-full-desc"></p>
+        
+        <div class="project-tech-stack" id="modal-tech-stack" style="margin-bottom:24px;"></div>
 
-        <!-- Description -->
-        <p id="modal-full-desc" style="font-size:15px;color:#cbd5e1;line-height:1.7;"></p>
-
-        <!-- Tech Stack -->
-        <div>
-          <div style="font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:8px;">Technologies &amp; Tools Used</div>
-          <div class="project-tech-tags" id="modal-tech-tags"></div>
-        </div>
-
-        <!-- Analytics Breakdown Grid -->
         <div class="case-study-grid">
           <div class="case-study-card">
             <div class="case-study-card-title">
@@ -372,7 +780,7 @@
           <div class="case-study-card">
             <div class="case-study-card-title">
               <i data-lucide="target" style="width:16px;height:16px;"></i>
-              <span>Analytical Objective</span>
+              <span>Project Objective</span>
             </div>
             <div class="case-study-card-body" id="modal-objective"></div>
           </div>
@@ -416,7 +824,7 @@
             <i data-lucide="github" style="width:16px;height:16px;"></i>
             <span>View GitHub Repository</span>
           </a>
-          <a id="modal-demo-link" href="#" target="_blank" class="btn btn-primary">
+          <a id="modal-demo-link" href="#" target="_blank" class="btn btn-primary" style="display:none;">
             <i data-lucide="external-link" style="width:16px;height:16px;"></i>
             <span>Open Live Dashboard</span>
           </a>
