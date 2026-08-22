@@ -24,6 +24,7 @@ function renderAll(data) {
   renderSkills(data.skills);
   renderExperience(data.experience);
   renderCredentials(data.education, data.certifications);
+  renderPublications(data.publications);
   renderContact(data.profile, data.social_links);
   
   if (window.lucide) {
@@ -47,37 +48,38 @@ function renderProfile(profile, resume) {
     if (brandTitle) brandTitle.textContent = profile.title;
   }
 
-  // Hero
+  // Hero Title & Headline
   const heroNameTitle = document.getElementById('hero-name-title');
   if (heroNameTitle) {
-    heroNameTitle.textContent = profile.title 
-      ? `Turning complex data into high-leverage business decisions.` 
-      : 'Data & Product Analyst';
+    heroNameTitle.textContent = 'Turning Data Into Clear, Actionable Insights.';
   }
 
   const heroHeadline = document.getElementById('hero-headline');
   if (heroHeadline) {
-    heroHeadline.textContent = profile.headline || profile.short_bio || '';
+    heroHeadline.textContent = profile.headline 
+      ? `${profile.headline} | ${profile.short_bio || ''}`
+      : (profile.short_bio || '');
   }
 
   const statusPill = document.getElementById('hero-status-pill');
   const statusText = document.getElementById('hero-status-text');
   if (statusText) {
-    statusText.textContent = profile.status_text || 'Available for Data Analyst & Product Analytics Roles';
+    statusText.textContent = profile.status_text || 'Open to Work • Data & Product Analyst Roles';
     if (statusPill) statusPill.style.display = profile.open_to_work ? 'inline-flex' : 'none';
   }
 
-  const statExp = document.getElementById('stat-exp');
-  if (statExp) statExp.textContent = profile.years_experience || '2+';
+  // Real Verified Metrics
+  const statRecords = document.getElementById('stat-records');
+  if (statRecords) statRecords.textContent = profile.records_analyzed || '1M+';
 
-  const statProjects = document.getElementById('stat-projects');
-  if (statProjects) statProjects.textContent = profile.projects_completed || '15+';
+  const statFraud = document.getElementById('stat-fraud');
+  if (statFraud) statFraud.textContent = profile.fraud_reduction || '30%';
 
-  const statSat = document.getElementById('stat-satisfaction');
-  if (statSat) statSat.textContent = profile.satisfaction_rate || '99%';
+  const statVisibility = document.getElementById('stat-visibility');
+  if (statVisibility) statVisibility.textContent = profile.decision_visibility || '35%';
 
   const heroLocation = document.getElementById('hero-location-tag');
-  if (heroLocation && profile.location) heroLocation.textContent = profile.location.split('/')[0].trim();
+  if (heroLocation && profile.location) heroLocation.textContent = profile.location.split(',')[0].trim() + ', IN';
 
   const heroAvatar = document.getElementById('hero-avatar-img');
   if (heroAvatar && profile.profile_photo) heroAvatar.src = profile.profile_photo;
@@ -94,7 +96,7 @@ function renderProfile(profile, resume) {
 
   // Resume Download Links
   const resumeUrl = (resume && resume.file_url) ? resume.file_url : (profile.resume_url || '#');
-  const resumeName = (resume && resume.filename) ? resume.filename : 'Raavi_Purna_Satya_Kumar_Resume.pdf';
+  const resumeName = (resume && resume.filename) ? resume.filename : 'Purna_Satya_Kumar_Raavi_Resume.pdf';
   
   const navResume = document.getElementById('nav-resume-btn');
   if (navResume) {
@@ -112,7 +114,6 @@ function renderCategories(categories, projects) {
   const container = document.getElementById('project-filter-tabs');
   if (!container) return;
 
-  // Extract distinct categories from projects if not provided
   const catSet = new Set(['All']);
   if (categories && Array.isArray(categories)) {
     categories.forEach(c => catSet.add(c));
@@ -153,21 +154,8 @@ function renderProjects(projects, category) {
   }
 
   grid.innerHTML = filtered.map(p => {
-    const primaryImg = (p.images && p.images.length > 0) ? p.images[0] : 'assets/project-sql-1.svg';
+    const primaryImg = (p.images && p.images.length > 0) ? p.images[0] : 'assets/project-powerbi-1.svg';
     const techChips = (p.technologies || []).slice(0, 4).map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('');
-    
-    // Extract first impact metric if available
-    let metricHtml = '';
-    if (p.business_impact) {
-      const match = p.business_impact.match(/(\d+[\d,.]*[%$kKmM]+|[\$₹]\d+[\d,.]*)/);
-      const val = match ? match[0] : 'Verified ROI';
-      metricHtml = `
-        <div class="project-metric-box">
-          <div class="project-metric-label">Key Business Impact</div>
-          <div class="project-metric-val">${escapeHtml(p.business_impact.slice(0, 100))}${p.business_impact.length > 100 ? '...' : ''}</div>
-        </div>
-      `;
-    }
 
     return `
       <div class="project-card" data-project-id="${escapeHtml(p.id)}">
@@ -180,8 +168,6 @@ function renderProjects(projects, category) {
         <div class="project-card-content">
           <h3 class="project-card-title">${escapeHtml(p.title)}</h3>
           <p class="project-card-desc">${escapeHtml(p.short_description || p.full_description || '')}</p>
-          
-          ${metricHtml}
 
           <div class="project-tech-tags">
             ${techChips}
@@ -203,7 +189,6 @@ function renderProjects(projects, category) {
     `;
   }).join('');
 
-  // Add click handlers to open case study modal
   grid.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', () => {
       const projId = card.getAttribute('data-project-id');
@@ -223,8 +208,7 @@ function openProjectModal(p) {
   document.getElementById('modal-category').textContent = p.category || 'Data Analytics';
   document.getElementById('modal-full-desc').textContent = p.full_description || p.short_description || '';
 
-  // Gallery
-  const images = (p.images && p.images.length > 0) ? p.images : ['assets/project-sql-1.svg'];
+  const images = (p.images && p.images.length > 0) ? p.images : ['assets/project-powerbi-1.svg'];
   const mainImg = document.getElementById('modal-main-img');
   mainImg.src = images[0];
 
@@ -248,11 +232,9 @@ function openProjectModal(p) {
     thumbsContainer.style.display = 'none';
   }
 
-  // Tech tags
   const techContainer = document.getElementById('modal-tech-tags');
   techContainer.innerHTML = (p.technologies || []).map(t => `<span class="tech-chip">${escapeHtml(t)}</span>`).join('');
 
-  // Case study sections
   document.getElementById('modal-problem').textContent = p.problem_statement || 'N/A';
   document.getElementById('modal-objective').textContent = p.objective || 'N/A';
   document.getElementById('modal-dataset').textContent = p.dataset || 'N/A';
@@ -260,7 +242,6 @@ function openProjectModal(p) {
   document.getElementById('modal-findings').textContent = p.key_findings || 'N/A';
   document.getElementById('modal-impact').textContent = p.business_impact || 'N/A';
 
-  // Links
   const ghLink = document.getElementById('modal-github-link');
   if (p.github_url) {
     ghLink.href = p.github_url;
@@ -294,7 +275,6 @@ function renderSkills(skills) {
   const container = document.getElementById('skills-grid');
   if (!container) return;
 
-  // Group skills by category
   const groups = {};
   (skills || []).forEach(s => {
     const cat = s.category || 'General Analytics';
@@ -366,7 +346,7 @@ function renderCredentials(education, certifications) {
         <h4 class="cert-title">${escapeHtml(c.title)}</h4>
         <div class="cert-issuer">${escapeHtml(c.issuer)}</div>
         <div class="cert-meta">
-          <span>Issued: ${escapeHtml(c.issue_date || '')}</span>
+          <span>${escapeHtml(c.issue_date || 'Verified')}</span>
           ${c.verification_url ? `<a href="${escapeHtml(c.verification_url)}" target="_blank" style="color:var(--accent-blue);">Verify ↗</a>` : ''}
         </div>
       </div>
@@ -383,7 +363,7 @@ function renderCredentials(education, certifications) {
         <div class="cert-issuer">${escapeHtml(ed.institution)} • ${escapeHtml(ed.location || '')}</div>
         <div class="cert-meta">
           <span>${escapeHtml(ed.start_date || '')} - ${escapeHtml(ed.end_date || '')}</span>
-          ${ed.grade ? `<span style="color:#34d399;font-weight:600;">Grade: ${escapeHtml(ed.grade)}</span>` : ''}
+          ${ed.grade ? `<span style="color:#34d399;font-weight:600;margin-left:8px;">CGPA / Grade: ${escapeHtml(ed.grade)}</span>` : ''}
         </div>
         ${ed.description ? `<p style="font-size:12px;color:#94a3b8;margin-top:6px;">${escapeHtml(ed.description)}</p>` : ''}
       </div>
@@ -391,6 +371,32 @@ function renderCredentials(education, certifications) {
   `).join('');
 
   container.innerHTML = certHtml + eduHtml;
+}
+
+function renderPublications(publications) {
+  const container = document.getElementById('publications-grid');
+  if (!container) return;
+
+  if (!publications || publications.length === 0) {
+    container.innerHTML = `<div style="grid-column: 1/-1; color: var(--text-muted);">No publications added yet.</div>`;
+    return;
+  }
+
+  container.innerHTML = publications.map(pub => `
+    <div class="cert-card" style="border-left: 3px solid var(--accent-teal);">
+      <div class="cert-badge-wrap" style="background:var(--accent-teal-subtle);border-color:rgba(20,184,166,0.3);">
+        <i data-lucide="book-open" style="width:24px;height:24px;color:var(--accent-teal);"></i>
+      </div>
+      <div class="cert-info">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;">
+          <h4 class="cert-title" style="font-size:15px;margin-bottom:0;">${escapeHtml(pub.title)}</h4>
+          <span style="background:var(--accent-emerald-subtle);color:#34d399;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;">${escapeHtml(pub.status || 'Accepted')}</span>
+        </div>
+        <div class="cert-issuer" style="color:var(--accent-blue);font-weight:500;margin-top:2px;">Conference: ${escapeHtml(pub.conference)}</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6;">${escapeHtml(pub.description || '')}</p>
+      </div>
+    </div>
+  `).join('');
 }
 
 function renderContact(profile, socialLinks) {
@@ -401,14 +407,13 @@ function renderContact(profile, socialLinks) {
     emailEl.href = `mailto:${profile.email}`;
   }
 
+  const phoneEl = document.getElementById('contact-phone');
+  if (phoneEl && profile.phone) {
+    phoneEl.textContent = profile.phone;
+  }
+
   const locEl = document.getElementById('contact-location');
   if (locEl && profile.location) locEl.textContent = profile.location;
-
-  const liEl = document.getElementById('contact-linkedin');
-  if (liEl && profile.linkedin) {
-    liEl.textContent = profile.linkedin.replace(/^https?:\/\/(www\.)?/, '');
-    liEl.href = profile.linkedin;
-  }
 
   const ghEl = document.getElementById('contact-github');
   if (ghEl && profile.github) {
@@ -421,7 +426,6 @@ function renderContact(profile, socialLinks) {
 document.addEventListener('DOMContentLoaded', () => {
   initPortfolio();
 
-  // Modal close handlers
   const closeBtn = document.getElementById('modal-close-btn');
   if (closeBtn) closeBtn.addEventListener('click', closeProjectModal);
 
@@ -436,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeProjectModal();
   });
 
-  // Contact form submission
   const form = document.getElementById('public-contact-form');
   if (form) {
     form.addEventListener('submit', async (e) => {
