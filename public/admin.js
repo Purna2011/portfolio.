@@ -235,37 +235,63 @@ function setupEventListeners() {
     projForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('proj-submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `<span>Saving project...</span>`;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Saving project...</span>`;
+      }
 
-      const id = document.getElementById('proj-edit-id').value;
-      const techs = projForm.technologies.value.split(',').map(t => t.trim()).filter(Boolean);
+      const id = document.getElementById('proj-edit-id')?.value || '';
+      const title = document.getElementById('proj-form-title')?.value || projForm.title?.value || 'Untitled Project';
+      const category = document.getElementById('proj-form-category')?.value || projForm.category?.value || 'Data Analytics';
+      const short_description = document.getElementById('proj-form-short-desc')?.value || projForm.short_description?.value || '';
+      const full_description = document.getElementById('proj-form-full-desc')?.value || projForm.full_description?.value || '';
+      const rawTechs = document.getElementById('proj-form-technologies')?.value || projForm.technologies?.value || '';
+      const techs = rawTechs.split(',').map(t => t.trim()).filter(Boolean);
+      const problem_statement = document.getElementById('proj-form-problem')?.value || projForm.problem_statement?.value || '';
+      const objective = document.getElementById('proj-form-objective')?.value || projForm.objective?.value || '';
+      const dataset = document.getElementById('proj-form-dataset')?.value || projForm.dataset?.value || '';
+      const methodology = document.getElementById('proj-form-methodology')?.value || projForm.methodology?.value || '';
+      const key_findings = document.getElementById('proj-form-findings')?.value || projForm.key_findings?.value || '';
+      const business_impact = document.getElementById('proj-form-impact')?.value || projForm.business_impact?.value || '';
+      const github_url = document.getElementById('proj-form-github')?.value || projForm.github_url?.value || '';
+      const live_demo_url = document.getElementById('proj-form-demo')?.value || projForm.live_demo_url?.value || '';
+      const change_note = document.getElementById('proj-form-change-note')?.value || projForm.change_note?.value || '';
+      const published = document.getElementById('proj-form-published') ? document.getElementById('proj-form-published').checked : true;
+      const featured = document.getElementById('proj-form-featured') ? document.getElementById('proj-form-featured').checked : false;
+
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
       const payload = {
         id: id || ('proj-' + Date.now()),
-        title: projForm.title.value,
-        category: projForm.category.value || 'Data Analytics',
-        short_description: projForm.short_description.value,
-        full_description: projForm.full_description.value,
+        title,
+        slug,
+        category,
+        short_description,
+        full_description,
         technologies: techs,
-        problem_statement: projForm.problem_statement.value,
-        objective: projForm.objective.value,
-        dataset: projForm.dataset.value,
-        methodology: projForm.methodology.value,
-        key_findings: projForm.key_findings.value,
-        business_impact: projForm.business_impact.value,
-        github_url: projForm.github_url.value,
-        live_demo_url: projForm.live_demo_url.value,
+        problem_statement,
+        objective,
+        dataset,
+        methodology,
+        key_findings,
+        business_impact,
+        github_url,
+        live_demo_url,
         images: currentProjectImages.length > 0 ? currentProjectImages : ['assets/project-powerbi-1.svg'],
-        featured: projForm.featured.checked,
-        published: projForm.published.checked,
-        _change_note: projForm.change_note.value
+        featured,
+        published,
+        _change_note: change_note
       };
 
       adminData = adminData || { projects: [] };
+      adminData.projects = adminData.projects || [];
       if (id) {
         const idx = adminData.projects.findIndex(p => p.id === id);
-        if (idx !== -1) adminData.projects[idx] = { ...adminData.projects[idx], ...payload };
+        if (idx !== -1) {
+          adminData.projects[idx] = { ...adminData.projects[idx], ...payload };
+        } else {
+          adminData.projects.push(payload);
+        }
       } else {
         adminData.projects.push(payload);
       }
@@ -275,8 +301,10 @@ function setupEventListeners() {
       showToast(id ? '✓ Project updated & saved' : '✓ New project created & published successfully', 'success');
       closeProjectEditor();
       renderProjectsList(adminData.projects);
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<i data-lucide="check" style="width:16px;height:16px;"></i><span>Save &amp; Publish Project</span>`;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i data-lucide="check" style="width:16px;height:16px;"></i><span>Save &amp; Publish Project</span>`;
+      }
 
       try {
         if (id) {
@@ -569,33 +597,41 @@ function openProjectEditor(projectId = null) {
   currentProjectId = projectId;
   const modal = document.getElementById('project-modal');
   const form = document.getElementById('project-form');
-  document.getElementById('proj-edit-id').value = projectId || '';
+  if (!modal || !form) return;
+
+  const idInput = document.getElementById('proj-edit-id');
+  if (idInput) idInput.value = projectId || '';
+
+  const titleHeading = document.getElementById('proj-modal-title');
 
   if (projectId) {
-    const p = (adminData.projects || []).find(proj => proj.id === projectId);
+    const p = (adminData && adminData.projects ? adminData.projects : []).find(proj => proj.id === projectId);
     if (!p) return;
-    document.getElementById('proj-modal-title').textContent = 'Edit Case Study';
-    form.title.value = p.title || '';
-    form.category.value = p.category || 'Power BI & Business Intelligence';
-    form.short_description.value = p.short_description || '';
-    form.full_description.value = p.full_description || '';
-    form.technologies.value = (p.technologies || []).join(', ');
-    form.problem_statement.value = p.problem_statement || '';
-    form.objective.value = p.objective || '';
-    form.dataset.value = p.dataset || '';
-    form.methodology.value = p.methodology || '';
-    form.key_findings.value = p.key_findings || '';
-    form.business_impact.value = p.business_impact || '';
-    form.github_url.value = p.github_url || '';
-    form.live_demo_url.value = p.live_demo_url || '';
-    form.featured.checked = !!p.featured;
-    form.published.checked = p.published !== false;
+    if (titleHeading) titleHeading.textContent = 'Edit Case Study';
+    
+    if (document.getElementById('proj-form-title')) document.getElementById('proj-form-title').value = p.title || '';
+    if (document.getElementById('proj-form-category')) document.getElementById('proj-form-category').value = p.category || 'Power BI & Business Intelligence';
+    if (document.getElementById('proj-form-short-desc')) document.getElementById('proj-form-short-desc').value = p.short_description || '';
+    if (document.getElementById('proj-form-full-desc')) document.getElementById('proj-form-full-desc').value = p.full_description || '';
+    if (document.getElementById('proj-form-technologies')) document.getElementById('proj-form-technologies').value = (p.technologies || []).join(', ');
+    if (document.getElementById('proj-form-problem')) document.getElementById('proj-form-problem').value = p.problem_statement || '';
+    if (document.getElementById('proj-form-objective')) document.getElementById('proj-form-objective').value = p.objective || '';
+    if (document.getElementById('proj-form-dataset')) document.getElementById('proj-form-dataset').value = p.dataset || '';
+    if (document.getElementById('proj-form-methodology')) document.getElementById('proj-form-methodology').value = p.methodology || '';
+    if (document.getElementById('proj-form-findings')) document.getElementById('proj-form-findings').value = p.key_findings || '';
+    if (document.getElementById('proj-form-impact')) document.getElementById('proj-form-impact').value = p.business_impact || '';
+    if (document.getElementById('proj-form-github')) document.getElementById('proj-form-github').value = p.github_url || '';
+    if (document.getElementById('proj-form-demo')) document.getElementById('proj-form-demo').value = p.live_demo_url || '';
+    if (document.getElementById('proj-form-change-note')) document.getElementById('proj-form-change-note').value = p._change_note || '';
+    if (document.getElementById('proj-form-featured')) document.getElementById('proj-form-featured').checked = !!p.featured;
+    if (document.getElementById('proj-form-published')) document.getElementById('proj-form-published').checked = p.published !== false;
     currentProjectImages = p.images ? [...p.images] : [];
   } else {
-    document.getElementById('proj-modal-title').textContent = 'Add New Project';
+    if (titleHeading) titleHeading.textContent = '+ Add New Project';
     form.reset();
-    form.featured.checked = false;
-    form.published.checked = true;
+    if (document.getElementById('proj-edit-id')) document.getElementById('proj-edit-id').value = '';
+    if (document.getElementById('proj-form-featured')) document.getElementById('proj-form-featured').checked = false;
+    if (document.getElementById('proj-form-published')) document.getElementById('proj-form-published').checked = true;
     currentProjectImages = [];
   }
 
