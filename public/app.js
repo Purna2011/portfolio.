@@ -108,7 +108,7 @@ const AUTHENTIC_MASTER_DATA = {
       github_url: "https://github.com/purnaravi26",
       live_demo_url: "",
       images: ["assets/project-product-1.svg"],
-      featured": false,
+      featured: false,
       published: true,
       order: 4,
       version: 1
